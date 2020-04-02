@@ -1,0 +1,27 @@
+header {
+  margin-bottom: 1.45rem;
+
+  .siteTitle {
+    margin: 0 auto;
+    max-width: 90%;
+    padding: 1.45rem 1.0875rem;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: space-between;
+
+    h1 {
+      margin: 0
+    }
+
+    div {
+      width: 150px;
+      display: flex;
+      justify-content: space-between;
+
+      .social-icon {
+        width: 50%;
+        height: 100%;
+      }
+    }
+  }
+}
