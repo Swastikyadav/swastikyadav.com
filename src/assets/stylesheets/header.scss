@@ -10,7 +10,11 @@ header {
     justify-content: space-between;
 
     h1 {
-      margin: 0
+      margin: 0;
+
+      @media all and (max-width: 768px) {
+        font-size: 1.6rem;
+      }
     }
 
     div {
@@ -33,6 +37,22 @@ header {
 
     li {
       padding: 10px 20px;
+    }
+
+    @media all and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .arrow {
+    cursor: pointer;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 90%;
+    background: rgba(128, 128, 128, 0.404);
+
+    @media all and (min-width: 768px) {
+      display: none;
     }
   }
 }
