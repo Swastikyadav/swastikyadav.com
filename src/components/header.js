@@ -7,6 +7,8 @@ import "../assets/stylesheets/header.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitterSquare, faGithubSquare } from '@fortawesome/free-brands-svg-icons'
 
+import Menu from './menu';
+
 const Header = ({ siteTitle }) => (
   <header>
     <div className="siteTitle">
@@ -24,6 +26,7 @@ const Header = ({ siteTitle }) => (
         </a>
       </div>
     </div>
+    <Menu />
   </header>
 )
 

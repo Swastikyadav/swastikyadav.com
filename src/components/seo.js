@@ -40,6 +40,10 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
         {
+          name: `keyword`,
+          content: `javascript, js, react, reactjs, ruby, rubyonrails, rails, opensource, programming`,
+        },
+        {
           property: `og:title`,
           content: title,
         },

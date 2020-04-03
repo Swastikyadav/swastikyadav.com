@@ -24,4 +24,15 @@ header {
       }
     }
   }
+
+  .menu-list {
+    list-style: none;
+    margin: 0 auto;
+    max-width: 90%;
+    display: flex;
+
+    li {
+      padding: 10px 20px;
+    }
+  }
 }
