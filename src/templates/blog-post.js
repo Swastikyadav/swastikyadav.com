@@ -7,7 +7,7 @@ export default function Template({ data }) {
 
   let featuredImgFluid = post.frontmatter.featuredImage.childImageSharp.fluid
   return (
-    <Layout>
+    <Layout aside_display="none">
       <div>
         <h1>{post.frontmatter.title}</h1>
         <h4>{post.frontmatter.category}</h4>
