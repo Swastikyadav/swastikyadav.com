@@ -23,7 +23,7 @@ const ReactPage = ({ data }) => (
 export const postQuery = graphql`
   query ReactBlogQuery {
     allMarkdownRemark(filter: {
-      frontmatter: { category: { eq: "react" } }
+      frontmatter: { category: { eq: "React JS" } }
     }) {
       edges {
         node {

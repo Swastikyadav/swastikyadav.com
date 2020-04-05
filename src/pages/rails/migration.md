@@ -1,8 +1,8 @@
 ---
 path: 'rails-migration'
 title: 'Rails Migration'
-category: 'rails'
+category: 'Ruby On Rails'
+featuredImage: ../../images/executionContext.jpg
 ---
 
-![](../images/gatsby-astronaut.png)
 This blog is about rails migration. Trying to add image

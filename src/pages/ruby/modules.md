@@ -1,7 +1,8 @@
 ---
 path: 'ruby-modules'
 title: 'Ruby Modules'
-category: 'ruby'
+category: 'Ruby'
+featuredImage: ../../images/executionContext.jpg
 ---
 
 This post is about ruby modules.

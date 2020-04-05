@@ -23,7 +23,7 @@ const RubyPage = ({ data }) => (
 export const postQuery = graphql`
   query RubyBlogQuery {
     allMarkdownRemark(filter: {
-      frontmatter: { category: { eq: "ruby" } }
+      frontmatter: { category: { eq: "Ruby" } }
     }) {
       edges {
         node {
