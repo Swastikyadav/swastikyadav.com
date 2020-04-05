@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const IndexPage = ({ data }) => (
+const JavaScriptPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
     {
@@ -21,8 +21,10 @@ const IndexPage = ({ data }) => (
 )
 
 export const postQuery = graphql`
-  query BlogIndexQuery {
-    allMarkdownRemark {
+  query JSBlogQuery {
+    allMarkdownRemark(filter: {
+      frontmatter: { category: { eq: "JavaScript" } }
+    }) {
       edges {
         node {
           id
@@ -37,4 +39,4 @@ export const postQuery = graphql`
   }
 `
 
-export default IndexPage
+export default JavaScriptPage;

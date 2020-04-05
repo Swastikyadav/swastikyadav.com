@@ -26,16 +26,16 @@ class Menu extends React.Component {
         <Link to="/" activeStyle={this.activeStyles}>
           <li>Home</li>
         </Link>
-        <Link to="/javascript" activeStyle={this.activeStyles}>
+        <Link to="/javascript-blogs" activeStyle={this.activeStyles}>
           <li>JavaScript</li>
         </Link>
-        <Link to="/reactjs" activeStyle={this.activeStyles}>
+        <Link to="/react-blogs" activeStyle={this.activeStyles}>
           <li>ReactJS</li>
         </Link>
-        <Link to="/ruby" activeStyle={this.activeStyles}>
+        <Link to="/ruby-blogs" activeStyle={this.activeStyles}>
           <li>Ruby</li>
         </Link>
-        <Link to="/ruby-on-rails" activeStyle={this.activeStyles}>
+        <Link to="/rails-blogs" activeStyle={this.activeStyles}>
           <li>Ruby on Rails</li>
         </Link>
         <Link to="/learn" activeStyle={this.activeStyles}>

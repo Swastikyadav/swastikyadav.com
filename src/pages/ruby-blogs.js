@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const IndexPage = ({ data }) => (
+const RubyPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
     {
@@ -21,8 +21,10 @@ const IndexPage = ({ data }) => (
 )
 
 export const postQuery = graphql`
-  query BlogIndexQuery {
-    allMarkdownRemark {
+  query RubyBlogQuery {
+    allMarkdownRemark(filter: {
+      frontmatter: { category: { eq: "ruby" } }
+    }) {
       edges {
         node {
           id
@@ -37,4 +39,4 @@ export const postQuery = graphql`
   }
 `
 
-export default IndexPage
+export default RubyPage;
