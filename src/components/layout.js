@@ -22,8 +22,8 @@ const Layout = ({ children, aside_display }) => {
       <Header siteTitle={data.site.siteMetadata.title} />
       <div>
         <Main children={children} aside_display={aside_display} />
-        <hr/>
         <footer>
+          <hr/>
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org" style={{color: '#674299'}}>Gatsby.</a>

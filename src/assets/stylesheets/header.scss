@@ -1,5 +1,9 @@
 header {
   margin-bottom: 1.45rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background: #fff;
 
   .siteTitle {
     margin: 0 auto;
@@ -62,6 +66,8 @@ main {
   max-width: 90%;
   padding: 0 1.0875rem;
   display: flex;
+  padding-top: 200px;
+  padding-bottom: 50px;
 
   .blog-list {
     width: 70%;
@@ -78,7 +84,31 @@ main {
     }
   }
 
-  @media all and (max-width: 768px) {
-    flex-direction: column;   
+  .post-preview {
+    display: flex;
+    margin-bottom: 50px;
+    .preview-content {
+      margin-left: 25px;
+      @media all and (max-width: 768px) {
+        margin: 5px 0;
+      }
+    }
+
+    @media all and (max-width: 768px) {
+      flex-direction: column;
+    }
   }
+
+  @media all and (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+footer {
+  background: #fff;
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  display: flex;
 }
