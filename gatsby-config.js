@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Andromeda`,
+    title: `Swastik`,
     description: `Andromeda the ulitame blogging theme. Andromeda is name of a galaxy and it also means a person who is mindful.`,
     author: `Swastik Yadav`,
   },
