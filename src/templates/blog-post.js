@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../components/layout'
 import Img from 'gatsby-image';
+import { graphql } from 'gatsby';
 
 export default function Template({ data }) {
   const post = data.markdownRemark
@@ -20,8 +21,8 @@ export default function Template({ data }) {
 }
 
 export const postQuery = graphql`
-  query BlogPostByPath($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }){
+  query BlogPostByPath($filePath: String!) {
+    markdownRemark(frontmatter: { path: { eq: $filePath } }){
       html
       frontmatter {
         path

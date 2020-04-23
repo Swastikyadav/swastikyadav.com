@@ -32,7 +32,7 @@ exports.createPages = async ({boundActionCreators, graphql}) => {
         path: node.frontmatter.path,
         component: postTemplate,
         context: {
-          path: node.frontmatter.path,
+          filePath: node.frontmatter.path,
         }
       })
     });
