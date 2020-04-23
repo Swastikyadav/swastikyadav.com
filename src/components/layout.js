@@ -28,7 +28,7 @@ const Layout = ({ children, aside_display }) => {
           {` `}
           <a href="https://www.gatsbyjs.org" style={{color: '#674299'}}>Gatsby.</a>
           {` `}
-          Contribute to this theme <a href="#" style={{color: '#3FBBC9'}}>here</a>.
+          Contribute to this theme <a href="https://github.com/Swastikyadav/swastikyadav.com" style={{color: '#3FBBC9'}}>here</a>.
         </footer>
       </div>
     </>
