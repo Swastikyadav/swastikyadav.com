@@ -621,3 +621,10 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+.learn-list li {
+  list-style: none;
+}
+.learn-list li > input {
+  margin-right: 5px;
+}
