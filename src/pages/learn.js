@@ -3,6 +3,8 @@ import React from 'react';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
+import Link from 'gatsby-link';
+
 function Learn() {
   return(
     <Layout>
@@ -11,14 +13,16 @@ function Learn() {
       <h2>JavaScript (Language of the web)</h2>
       <ul className="learn-list">
         <li><input type="checkbox" disabled />Variables, Data Types and Operators</li>
-        <li><input type="checkbox" disabled />Program Structure, Expression / Statement and Control Flow</li>
+        <li><input type="checkbox" checked disabled /><Link to="/statements-and-expressions">Program Structure, Expression / Statement</Link></li>
+        <li><input type="checkbox" checked disabled /><Link to="/js-scopes-and-hoisting">JS Scopes and Hoisting</Link></li>
         <li><input type="checkbox" disabled />Functions - Higher Order functions</li>
         <li><input type="checkbox" disabled />Functions 2 - Recursion, Closures</li>
         <li><input type="checkbox" disabled />Objects and Arrays in detail</li>
         <li><input type="checkbox" disabled />Difference b/w for...in loop and for...of loop</li>
         <li><input type="checkbox" disabled />Object oriented JavaScript - Classes, Inheritance and prototype</li>
-        <li><input type="checkbox" disabled />Asynchronous JavaScript - Callbacks, Promises, Async/Await</li>
+        <li><input type="checkbox" checked disabled /><Link to="/async-javascript">Asynchronous JavaScript - Callbacks, Promises, Async/Await</Link></li>
         <li><input type="checkbox" disabled />Network Requests - Xhr Http request, fetch</li>
+        <li><input type="checkbox" disabled />Execution Context - The brain of JavaScript</li>
         <li><input type="checkbox" disabled />ES6+</li>
       </ul>
       <h2>DOM (document object model)</h2>

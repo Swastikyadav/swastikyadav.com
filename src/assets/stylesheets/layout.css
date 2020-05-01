@@ -628,3 +628,6 @@ pre tt:after {
 .learn-list li > input {
   margin-right: 5px;
 }
+.learn-list a {
+  color: blue;
+}

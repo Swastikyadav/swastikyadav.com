@@ -51,6 +51,6 @@ Hence the outcome of the above code will be "Yes". Open up the console and try i
 
 You see! how we predicted the outcome even the error that JS was about to give. That's the beauty of this concept. Try to see every code in this way.
 
-Next, I will be coming up with some advanced JS concepts. And if you want me to write something specific, please let me know in the comments below.
+Next, I will be coming up with some advanced JS concepts.
 
 For now, this is it. **Thank You** for reading. 
