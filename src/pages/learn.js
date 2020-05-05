@@ -66,8 +66,9 @@ function Learn() {
       </ul>
       <h2>Ruby (Programmer's best friend)</h2>
       <ul className="learn-list">
-        <li><input type="checkbox" disabled />Control Flow in Ruby</li>
-        <li><input type="checkbox" disabled />Loops and iterators</li>
+        <li><input type="checkbox" checked disabled /><Link to="/intro-ruby">Intro to Ruby: DataTypes and Variables</Link></li>
+        <li><input type="checkbox" checked disabled /><Link to="/ruby-control-flow">Control Flow in Ruby</Link></li>
+        <li><input type="checkbox" checked disabled /><Link to="/ruby-loops-iterators">Loops and iterators</Link></li>
         <li><input type="checkbox" disabled />Arrays and Hashes</li>
         <li><input type="checkbox" disabled />Methods, Blocks and Sorting</li>
         <li><input type="checkbox" disabled />Blocks, Procs, and Lambdas</li>
