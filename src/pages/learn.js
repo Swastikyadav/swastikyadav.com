@@ -91,6 +91,11 @@ function Learn() {
         <li><input type="checkbox" disabled />Using Devise to manage authentication</li>
         <li><input type="checkbox" disabled />Third party authentication with OmniAuth</li>
       </ul>
+      <h2>New Technologies</h2>
+      <ul className="learn-list">
+        <li><input type="checkbox" disabled />GatsbyJS</li>
+        <li><input type="checkbox" disabled />GraphQL</li>
+      </ul>
       <h2>Algorithm</h2>
       <ul className="learn-list">
         <li><input type="checkbox" disabled />Intro to Algorithm</li>
