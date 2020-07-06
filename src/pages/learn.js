@@ -43,7 +43,7 @@ function Learn() {
         <li><input type="checkbox" disabled />Error Boundries</li>
         <li><input type="checkbox" disabled />Higher order component</li>
         <li><input type="checkbox" disabled />Reconciliation</li>
-        <li><input type="checkbox" disabled />Static TypeChecking and TypeChecking with PropTypes</li>
+        <li><input type="checkbox" checked disabled /><Link to="/react-props-validation">Static TypeChecking and TypeChecking with PropTypes</Link></li>
         <li><input type="checkbox" disabled />React Hooks - useState, useEffect, useRef, useContext, useReducer</li>
         <li><input type="checkbox" disabled />Build your custom Hooks</li>
       </ul>
@@ -76,8 +76,9 @@ function Learn() {
       </ul>
       <h2>Ruby On Rails (Framework to build faster apps based on Ruby)</h2>
       <ul className="learn-list">
-        <li><input type="checkbox" disabled />Active Record - Modles</li>
+        <li><input type="checkbox" disabled />Active Record - Models</li>
         <li><input type="checkbox" disabled />Active Record - Migration, Validation and Callbacks</li>
+        <li><input type="checkbox" disabled />Referential integerity and Indices</li>
         <li><input type="checkbox" disabled />Action Controller</li>
         <li><input type="checkbox" disabled />All about rails routing</li>
         <li><input type="checkbox" disabled />The Asset pipeline</li>
