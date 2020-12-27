@@ -1,0 +1,116 @@
+---
+title: Connecting Rails with ReactJS using JsRoutes.
+date: 2020-02-07
+description: Rendering ReactJS components instead of Rails default erb or slim template engine.
+tags:
+  - Technology
+  - Ruby on Rails
+  - ReactJS
+---
+
+Recently I have been trying to connect ReactJS with Rails application. And I did not found any proper resource on the internet, So I decided to write one.
+
+We will not be using rails as an API, but will render react component instead of rails default view.
+
+## Installing ReactJS in Rails application
+
+1. Add gem `react-rails` to your Gemfile.
+
+```ruby
+gem 'react-rails'
+```
+
+2. Execute `bundle install`
+
+```bash
+$ bundle install
+```
+
+3. Now to create components folder in `app/javascript` directory run the following three commands in your terminal.
+
+```bash
+$ rails webpacker:install
+$ rails webpacker:install:react
+$ rails generate react:install
+```
+
+That's all, you need to do in order to use ReactJS with your rails application.
+
+## Connecting react component with rails view
+
+Rails application will work normally, we will just render react component instead of rails default view.
+
+Let's say we have a greetings controller and we want to render a greeting react component.
+
+Controller: `app/controllers/greetings_controller.rb`
+
+```ruby
+class GreetingsController < ApplicationController
+  def show
+    render
+  end
+end
+```
+
+Views: `app/views/greetings/show.html.erb`
+
+```html
+<%= react_component('Greeting', greet: "Hello World!") %>
+```
+
+React: `app/javascript/components/Greeting.js`
+
+```js
+import React from 'react'
+
+function Greeting(props) {
+  return (
+    <>
+      <h1>{props.greet}</h1>
+      <p>Welcome to the React-Rails world!</p>
+    </>
+  )
+}
+
+export default Greeting
+```
+
+And, you are done. You just rendered a react component instead of rails default view.
+
+## Configuring JS-Routes
+
+JS-Routes helps you to access the rails routes in your JavaScript files.
+
+To configure JS-Routes, follow the link given below. Because the official docs of JS-Routes are outdated.
+
+**[Configuring JS-Routes](https://github.com/railsware/js-routes/issues/237#issuecomment-409167952)**
+
+## Using JS-Routes in react component
+
+After following the steps from the above link, you can use JS-Routes in your react components like this, `Routes.dashboard_path()`. Replace dashboard_path() with your desired rails route.
+
+For example:
+
+```js
+import React from 'react';
+
+function Example() {
+  function handleLogout() {
+    fetch(Routes.logout_path(), {
+      method: "DELETE"
+    });
+  }
+
+  ...
+}
+
+export default Example;
+```
+
+<hr/>
+
+That's how you connect react with rails in a server side rendered application. I hope it was helpful for you.
+
+Say hi on **[twitter](https://twitter.com/codeSwastik)**, there I share regular small programming related stuff and my thoughts about life.
+
+Thank You!
