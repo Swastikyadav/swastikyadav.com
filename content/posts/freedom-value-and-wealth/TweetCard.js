@@ -3,7 +3,7 @@ import { Tweet } from "react-twitter-widgets";
 
 function TweetCard() {
   return (
-    <Tweet tweetId="1346127172193243137" />
+    <Tweet tweetId="1346348928527044608" />
   );
 }
 
