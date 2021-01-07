@@ -1,0 +1,53 @@
+.nl-container {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 40px;
+  text-align: center;
+  color: rgb(66, 66, 66);
+  margin-top: -60px;
+}
+
+.nl-title {
+  font-size: 30px;
+}
+
+.nl-tag {
+  font-size: 20px;
+}
+
+.nl-success {
+  color: green;
+  font-weight: 600;
+}
+
+.nl-error {
+  color: red;
+  font-weight: 600;
+}
+
+.nl-input {
+  width: 60%;
+  padding: 13px;
+  outline: none;
+  margin-right: 5px;
+}
+
+.nl-button {
+  padding: 13px;
+  cursor: pointer;
+  color: blue;
+  font-weight: bold;
+}
+
+@media all and (max-width: 768px) {
+  .nl-container {
+    padding: 5px;
+    margin-top: 0px;
+  }
+  .nl-input, .nl-button {
+    width: 90%;
+  }
+  .nl-button {
+    margin-top: 5px;
+  }
+}

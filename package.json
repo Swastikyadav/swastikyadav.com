@@ -26,6 +26,7 @@
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.13",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
     "react-twitter-widgets": "^1.9.5"
   },
   "devDependencies": {

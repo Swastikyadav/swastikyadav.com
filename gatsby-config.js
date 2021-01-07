@@ -34,6 +34,10 @@ module.exports = {
           {
             title: `Tags`,
             slug: `/tags`,
+          },
+          {
+            title: `NewsLetter`,
+            slug: `/newsletter`
           }
         ],
       },
