@@ -42,7 +42,7 @@ const NewsLetter = () => {
     <div className="nl-container">
       <h2 className="nl-title">Join My Newsletter</h2>
       <p className="nl-tag">
-        Insightful talks on Tech, Startup, and Finance straight to your inbox.
+        Every week I send out my learnings about Tech, Startup, and Finance.
       </p>
 
       {status === 'SUCCESS' && <p className="nl-success">Success! Now check your email to confirm your subscription.</p>}
