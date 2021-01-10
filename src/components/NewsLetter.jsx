@@ -40,7 +40,7 @@ const NewsLetter = () => {
 
   return (
     <div className="nl-container">
-      <h2 className="nl-title">Join My Newsletter</h2>
+      <h2 className="nl-title">VisionMad - <small>Vision to Make A Difference</small></h2>
       <p className="nl-tag">
         Every week I send out my learnings about Tech, Startup, and Finance.
       </p>
@@ -68,7 +68,7 @@ const NewsLetter = () => {
             className="nl-button"
             type="submit"
           >
-            Subscribe
+            Make A Difference
           </button>
 
       </form>
