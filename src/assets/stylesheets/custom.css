@@ -7,21 +7,8 @@
   color: #583B8B;
 }
 
-.logo-container {
-  width: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo-container a {
-  color: #000;
-}
-
-.logo-container a:hover {
-  text-decoration: underline;
+a:active {
   color: #583B8B;
-  font-weight: 400;
 }
 
 .short-name {
@@ -31,9 +18,6 @@
 @media all and (max-width: 652px) {
   .logo {
     font-size: 20px;
-  }
-  .logo-container {
-    width: 120px;
   }
   .full-name {
     display: none;
