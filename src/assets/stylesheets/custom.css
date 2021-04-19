@@ -15,6 +15,10 @@ a:active {
   display: none;
 }
 
+.nav-link {
+  margin: 0 8px;
+}
+
 @media all and (max-width: 652px) {
   .logo {
     font-size: 20px;

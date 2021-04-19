@@ -135,9 +135,10 @@ const NavigationHeader: React.FC<{}> = () => {
             </button>
           ) : (
             <>
-              <Link to="/courses">Courses</Link>
+              <Link className="nav-link" to="/courses">Courses</Link>
+              <Link className="nav-link" to="/subscribe">Subscribe</Link>
               <SharePageButton />
-              <DarkModeToggle />
+              {/* <DarkModeToggle /> */}
             </>
           )}
         </NavControls>

@@ -1,0 +1,67 @@
+#revue-embed {
+  max-width: 850px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 100px;
+  padding: 60px 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  background: transparent;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+}
+
+#revue-embed h3 {
+  font-size: 24px;
+}
+
+#revue-embed p {
+  color: #73737D;
+  line-height: 1.75;
+  margin: 10px auto 20px;
+}
+
+.highlight {
+  color: #583B8B;
+  font-weight: 600;
+}
+
+.revue-form-field {
+  position: relative;
+  width: 471px;
+  color: #000;
+  border-radius: 35px;
+  border-style: none;
+  padding: 13px 21px 13px 35px;
+  background: #fff;
+  border: 1px solid dimgray;
+}
+
+.revue-form-submit {
+  width: 160px;
+  height: 38px;
+  color: #6166DC;
+  background: transparent;
+  border-radius: 35px;
+  border: 1px solid #6166DC;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.revue-form-submit:hover {
+  background: #6166DC;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media all and (max-width: 652px) {
+  #revue-embed {
+    padding: 60px 0rem;
+  }
+
+  .revue-form-field {
+    width: 100%;
+  }
+}
