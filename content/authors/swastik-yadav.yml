@@ -1,0 +1,10 @@
+name: Swastik Yadav
+bio: |
+  Software Engineer, Writing about full stack web development, OOP, JavaScript, and general programming.
+avatar: ./avatars/swastik-yadav.png
+social:
+  - url: https://twitter.com/codeSwastik
+  - url: https://github.com/Swastikyadav
+  - url: https://www.linkedin.com/in/swastik-yadav-6386b71b5/
+  - url: https://www.youtube.com/channel/UCHs73qDeimVFGTa-MzjtnLA
+featured: true

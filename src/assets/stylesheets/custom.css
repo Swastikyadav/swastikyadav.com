@@ -1,0 +1,14 @@
+.logo {
+  font-size: 30px;
+  color: #7A8085;
+}
+
+.logo span {
+  color: #583B8B;
+}
+
+@media all and (max-width: 652px) {
+  .logo {
+    font-size: 15px;
+  }
+}
