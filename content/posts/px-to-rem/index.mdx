@@ -1,0 +1,164 @@
+---
+title: Convert px to rem - An effective workflow
+author: Swastik Yadav
+date: 2021-04-24
+hero: ./banner.png
+excerpt: Why you should convert all your px to rem to have an adaptable and responsive web page out of the box.
+---
+
+Beginner CSS developers often use the pixel unit everywhere and that's fine there is nothing wrong with it.
+
+But in this post, I will try to convince you to **use rem instead of px**. You will see what are the benefits of **converting px to rem**.
+
+## Working with pixels
+Let's say you built a webpage where you used pixels for everything from font size to padding, margin, and all distances. Now to make this page responsive you will define media queries for all those sizes.
+
+For instance.
+
+**CSS**
+```css
+body {
+  padding: 30px;
+}
+
+.heading-primary {
+  margin-bottom: 60px;
+}
+
+.text-primary {
+  font-size: 60px;
+  letter-spacing: 35px;
+}
+
+.text-secondary {
+  font-size: 20px;
+  letter-spacing: 17px;
+}
+
+.btn {
+  padding: 15px 40px;
+  border-radius: 100px;
+  font-size: 16px;
+}
+```
+**Media Query**
+```css
+@media all and (max-width: 600px) {
+  body {
+    padding: 15px;
+  }
+
+  .heading-primary {
+    margin-bottom: 30px;
+  }
+
+  .text-primary {
+    font-size: 30px;
+    letter-spacing: 17px;
+  }
+
+  .text-secondary {
+    font-size: 15px;
+    letter-spacing: 8px;
+  }
+
+  .btn {
+    padding: 7px 20px;
+    border-radius: 100px;
+    font-size: 10px;
+  }
+}
+```
+
+You wrote a media query for each font size, padding, margin, and distance. Well, that's fine, But I can show you a better way to make all size and length-related stuff adaptable and responsive with just one line of media query.
+
+## Working with rem
+The rem unit is always related to the root font size. And the root font size is set in the HTML selector.
+
+For example, the default root font size of most browser is 16px. So, 1rem is 16px, 2rem is 32px, 3rem is 48px, and so on and so forth.
+
+So if we now set that root font size, we can and very easily change all the other measurements on our page to rem.
+
+To keep our **px to rem** calculations easy, I will set the root font size to 10px. So, now 10px is 1rem, 20px is 2rem, 35px is 3.5rem.
+
+<blockquote>Formula: rem = px / 10</blockquote>
+
+Let's change all px units to rem accordingly.
+
+**CSS**
+```css
+html {
+  font-size: 10px;
+}
+
+body {
+  padding: 3rem;
+}
+
+.heading-primary {
+  margin-bottom: 6rem;
+}
+
+.text-primary {
+  font-size: 6rem;
+  letter-spacing: 3.5rem;
+}
+
+.text-secondary {
+  font-size: 2rem;
+  letter-spacing: 1.7rem;
+}
+
+.btn {
+  padding: 1.5rem 4rem;
+  border-radius: 10rem;
+  font-size: 1.6rem;
+}
+```
+
+Now to make the page responsive you don't have to define media queries for all size and length-related stuff. Just define the root font size in the media query and boom, you have an adaptable and responsive page out of the box.
+
+**Media Query**
+```css
+@media all and (max-width: 600px) {
+  html {
+    font-size: 6px;
+  }
+```
+
+Compare this media query with the previous one.
+
+That's it. All sizes and lengths will reduce accordingly below 600px because all your sizes and lengths depends on the root font-size.
+
+## Define root font size in %
+It's a bad practice to define the root font size in px. You should always define the root font size in %. Let me explain why.
+
+Sometimes readers (users) might change the default font size of the browser for his / her reading convenience. So, if the reader increases the default font size to 20px, it won't change the root font size defined by you which is 10px.
+
+That's why you should define the root font size in percentage. So, that it changes when the reader changes the browser's default font size.
+
+So, the root font size of 100% will be the browser's default font size of 16px. But you want it to be 10px (to make your calculation easier). Let's do the math.
+
+<blockquote>
+  <br />
+  16px = 100% <br />
+  (16px / 16px ) * 10px = (100 / 16) * 10 <br />
+  10px = 62.5%
+</blockquote>
+
+
+All right then, Let's change the root font size from 10px to 62.5%.
+
+**CSS**
+```css
+html {
+  font-size: 62.5%;
+  /* Default 100% is 16px. All rem will adapt accordingly if user changes browser font size. */
+}
+```
+
+So, that was it for this post. I hope I was able to convince you to change all your px to rem. Here is a live web page built with rem instead of px.
+
+https://woyiv.csb.app
+
+If you found this post useful, then please consider joining the newsletter below for more such stuff.

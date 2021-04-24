@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Swastik Yadav`,
+    title: `Swastik Yadav || Full stack software engineer.`,
     name: `Swastik Yadav`,
     siteUrl: `https://swastikyadav.com`,
-    description: `Software Engineer, writing about full-stack web development.`,
+    description: `Full-Stack web development blogs, courses, tutorials, and projects. Learn web development best practices the right way.`,
     hero: {
       heading: `Full-Stack web development blogs, tutorials, courses, and projects.`,
       maxWidth: 652,
