@@ -54,5 +54,12 @@ module.exports = {
       options: {
       },
     },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://swastikyadav.com/`,
+        stripQueryString: true,
+      },
+    },
   ],
 };
