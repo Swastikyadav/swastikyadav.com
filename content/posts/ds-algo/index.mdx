@@ -1,0 +1,145 @@
+---
+title: DataStructure and Algorithm Series in JavaScript
+author: Swastik Yadav
+date: 2021-05-11
+hero: ./banner.png
+excerpt: The complete guide to DataStructure and Algorithm in JavaScript for beginners. All major DS and Algos.
+---
+
+With this post I am starting a new series where I will cover all major DataSctructure and Algorithms in an easy and illustrative manner.
+
+The terms in table of content might seem very scary, but just be with me I promise to explain everything in the simplest manner possible.
+
+I will keep updating this post on a daily basis, till I cover everything mentioned in Table of content.
+
+## Tabel of content:
+- Big O Notation
+	- [Understanding Big O Notation](#big-o-notation)
+- Algorithms
+	- [What is an algorithm and why to care?](#what-is-algo)
+	- [Recursion](#recursion)
+	- Linear Search Algorithm
+	- Binary Search Algorithm
+	- Naive Search Algorithm
+	- KPM Algorithm
+	- Bubble Sort
+	- Selection Sort
+	- Merge Sort
+	- Quick Sort
+	- Radix Sort
+- DataStructure
+	- [What is DataStructure and why to care?](#what-is-ds)
+	- Single linked list DS
+	- Tree Traversal
+	- Stack and Queues
+	- Binary search trees
+	- Binary Heap
+	- Hash Tables
+	- Graphs
+	- Graph Traversal
+
+## <a name="big-o-notation">Understanding Big O Notation</a>
+Big O Notation is a way to represent the **time and space** complexity of an algorithm.
+
+- Time Complexity: Time taken by the algorithm to complete the execution.
+- Space Complexity: The memory occupied by the algorithm. 
+
+![big-o-notation-cover](./algo-complexity.png)
+
+There are few expressions (notations) which represents the time complexity of an algorithm.
+
+- O(1): Constant time complexity. This is the ideal case.
+- O(logn): Logarithmic time complexity. If `log(n) = x` then it is same as `10^x`
+- O(n): Linear time complexity. Time increases with the number of input in a linear manner. For ex, If one input takes 1 ms, 4 inputs will take 4 ms to execute the algo.
+- O(n^2): Exponential time complexity. This mostly happens in case of nested loops.
+- O(n!): Factorial time complexity. This is the worst case senario, which should be avoided.
+
+You should try to write your algorithm such that it can be represented by the first 3 notations. And last two should be avoided as often as possible.
+
+![o-notation-graph](./o-notation-graph.png)
+
+You want to keep your complexity as low and straight as possible, ideally avoiding anything above O(n).
+
+In further sections of this article you will see examples of each notation. For now this is all you need to know.
+
+## Algorithm
+### <a name="what-is-algo">What is algorithm and why to care?</a>
+The way to solve a problem or we can say the **steps**, **procedure**, or **set of rules** to solve a problem is known as Algorithm.
+
+<blockquote>ex: Search Engine algorithm to find out data related to a search string.</blockquote>
+
+As a programmer you will come across many problems that needs to be solved with these algorithms. So, it's better if you already know them.
+
+### <a name="recursion">Recursion</a>
+A function calling itself is recursion. Think of it as an alternative to loop.
+
+```js
+function recursiveFn() {
+	console.log("This is a recursive function");
+	recursiveFn();
+}
+
+recursiveFn();
+```
+In the above snippet look at line 3 recursiveFn is called in recursiveFn itself. As I mentioned earlier recursion is an alternative to loop.
+
+So, how many times this function is exactly going to run?
+
+Well,  this will create an infinite loop, because there is nothing to stop it at any point.
+
+![recursion-diagram](./recursivefn1.svg)
+
+Let's say we need to run the loop only 10 times. On the 11th iteration function should return. That will stop the loop.
+
+```js
+let count = 1;
+function recursiveFn() {
+	console.log(`Recursive ${count}`);
+	if (count === 10) return;
+	count++;
+	recursiveFn();
+}
+
+recursiveFn();
+```
+In the above snippet line 4 returns and stops the loop at count 10.
+
+Now let's see a more realistic example. Our task is to return an array of odd numbers from a given array. This can be achieved in a number of ways including for-loop, Array.filter method, e.t.c
+
+But to showcase the use of recursion I will use a helperRecursive function.
+
+```js
+function oddArray(arr) {
+    let result = [];
+    function helperRecursiveFn(arr) {
+        if(arr.length === 0) {
+            return; // 1
+        } else if(arr[0] % 2 !== 0) {
+            result.push(arr[0]); // 2
+        }
+        helperRecursiveFn(arr.slice(1)); // 3
+    }
+    helperRecursiveFn(arr);
+    return result;
+}
+
+oddArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+// OutPut -> [1, 3, 5, 7, 9]
+```
+Here the recursive function is helperRecursiveFn.
+1. Return if the array length is 0.
+2. Push the element to result array if the element is odd.
+3. Call helperRecursiveFn with **first element of array sliced**. Every time the first element of array will be sliced, because we have already cheked it for odd or even.
+
+For ex: First time helperRecursiveFn will be called with **`[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`**. Next time it will be called with **`[2, 3, 4, 5, 6, 7, 8, 9, 10]`** and so on untill the array length is 0. 
+
+## DataStructure
+### <a name="what-is-ds">What is DataStructure and why to care?</a>
+DataStructure is the way to organize your data. Different operations (CRUD) performs better with different DataStructures.
+
+So, it is very important to know which DS is right for a particular use case.
+
+---
+I am updating this post daily with one DS / Algo topic. If this is helpful to you in any way, consider sharing with your social media network.
+
+Thank You!
