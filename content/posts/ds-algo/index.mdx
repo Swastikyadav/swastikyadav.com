@@ -18,7 +18,7 @@ I will keep updating this post on a daily basis, till I cover everything mention
 - Algorithms
 	- [What is an algorithm and why to care?](#what-is-algo)
 	- [Recursion](#recursion)
-	- Linear Search Algorithm
+	- [Linear Search Algorithm](#linear-search)
 	- Binary Search Algorithm
 	- Naive Search Algorithm
 	- KPM Algorithm
@@ -132,6 +132,37 @@ Here the recursive function is helperRecursiveFn.
 3. Call helperRecursiveFn with **first element of array sliced**. Every time the first element of array will be sliced, because we have already cheked it for odd or even.
 
 For ex: First time helperRecursiveFn will be called with **`[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`**. Next time it will be called with **`[2, 3, 4, 5, 6, 7, 8, 9, 10]`** and so on untill the array length is 0. 
+
+### <a name="linear-search">Linear Search Algorithm</a>
+Linear search algorithm is pretty simple. Say that you need to find if a number exists in a given array or not.
+
+You will run a simple for loop and check every element untill you find the one you are looking for.
+
+```js
+const array = [3, 8, 12, 6, 10, 2];
+
+// Find 10 in the given array.
+function checkForN(arr, n) {
+	for(let i = 0; i < array.length; i++) {
+		if (n === array[i]) {
+			return `${true} ${n} exists at index ${i}`;
+		}
+	}
+
+  return `${false} ${n} does not exist in the given array.`;
+}
+
+checkForN(array, 10);
+```
+
+That's linear search algorithm. You search for each element in the array one by one in a linear manner.
+
+![linear-search-algorithm](./linear-search.svg)
+
+#### Time Complexity of Linear Search Algorithm
+There is only one for loop which will run n times. Where n (in worst case) is the length of the given array.
+
+Hence the time complexity for linear search algorithm is **Linear Time Complexity: O(n)**.
 
 ## DataStructure
 ### <a name="what-is-ds">What is DataStructure and why to care?</a>
