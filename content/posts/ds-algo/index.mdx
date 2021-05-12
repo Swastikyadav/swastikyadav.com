@@ -171,23 +171,30 @@ In linear search you can eliminate one element at a time. But with binary search
 
 This algorithm follows divide and conquer approach. Let find the index of 8 in [2, 3, 6, 8, 10, 12].
 
-1. Find the middleIndex of the array.
-	```js
-	const array = [2, 3, 6, 8, 10, 12];
-	let firstIndex = 0;
-	let lastIndex = array.length - 1;
-	let middleIndex = Math.floor((firstIndex + lastIndex) / 2); // middleIndex -> 2
-	```
-2. Check if middleIndex element > 8. If so, that means 8 is on the left of middleIndex. Hence, change lastIndex to (middleIndex - 1).
-3. Else if middleIndex element < 8. That means 8 is on the right of middleIndex. Hence, change firstIndex to (middleIndex + 1);
-	```js
-	if (array[middleIndex] > 8) {
-		lastIndex = middleIndex - 1;
-	} else {
-		firstIndex = middleIndex + 1;
-	}
-	```
-4. With every iteration middleIndex is again set as per the new firstIndex or lastIndex.
+**Step 1:**
+Find the middleIndex of the array.
+```js
+const array = [2, 3, 6, 8, 10, 12];
+let firstIndex = 0;
+let lastIndex = array.length - 1;
+let middleIndex = Math.floor((firstIndex + lastIndex) / 2); // middleIndex -> 2
+```
+
+**Step 2:**
+Check if middleIndex element > 8. If so, that means 8 is on the left of middleIndex. Hence, change lastIndex to (middleIndex - 1).
+
+**Step 3:**
+Else if middleIndex element < 8. That means 8 is on the right of middleIndex. Hence, change firstIndex to (middleIndex + 1);
+```js
+if (array[middleIndex] > 8) {
+	lastIndex = middleIndex - 1;
+} else {
+	firstIndex = middleIndex + 1;
+}
+```
+
+**Step 4:**
+With every iteration middleIndex is again set as per the new firstIndex or lastIndex.
 
 Let's see all those steps together in code format.
 
