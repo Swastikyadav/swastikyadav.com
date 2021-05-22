@@ -8,7 +8,9 @@ function Profile() {
   useEffect(() => {
     const script = document.createElement("script");
     
-    script.src = "https://platform.linkedin.com/badges/js/profile.js";
+    script.src = "https://cdn.jsdelivr.net/gh/Swastikyadav/embeddable-twitter-profile@master/client/widget-v3/index.js";
+    script.setAttribute("id", "embed-script");
+    script.setAttribute("data-user", "swastikjsdev");
     script.async = true;
 
     document.body.appendChild(script);
@@ -22,18 +24,7 @@ function Profile() {
     <Layout>
       <SEO />
       <Section>
-        <div style={{ marginTop: "100px", display: "flex", justifyContent: "center" }}>
-          <div
-            class="badge-base LI-profile-badge"
-            data-locale="en_US"
-            data-size="large"
-            data-theme="light"
-            data-type="HORIZONTAL"
-            data-vanity="swastik-yadav-6386b71b5"
-            data-version="v1"
-          >
-          </div>   
-        </div>
+        <div id="embed-div" style={{marginTop: "75px"}}></div>
       </Section>
     </Layout>
   );
