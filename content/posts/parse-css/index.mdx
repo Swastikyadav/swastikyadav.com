@@ -1,0 +1,55 @@
+---
+title: How CSS is parsed on the browser
+author: Swastik Yadav
+date: 2021-05-28
+hero: ./banner.png
+excerpt: How CSS is parsed on the browser?, How CSS render the document style?, How layout of the page is decided?
+---
+We all have used CSS to build beautiful and responsive webpages. But do you know:
+
+- How browser parses the CSS?
+- How CSS renders the style?
+- How layout of the page is decided?
+
+In this post I will try to answer the above questions in a simple manner.
+
+## CSS is parsed on the browser in 3 steps.
+1. Resolve conflicting CSS declarations.
+2. Process final computed CSS values.
+3. Visual Formatting Model.
+
+Here is a complete flow of these 3 steps.
+
+![how css is parsed on the v=browser](https://pbs.twimg.com/media/E2PI8oKWYAAk44B?format=png&name=small)
+
+Let's understand each step.
+
+## 1 Resolve Conflicting CSS declarations.
+- Different stylesheets are combined together.
+- Resolving conflicts when more than one rule is applied to a certain element.
+
+For ex: Which color to apply when defined twice for the same element.
+
+Here Cascade & Specificity is at play.
+
+![css-specificity](https://pbs.twimg.com/media/E2PLPGFXsAoeTT7?format=jpg&name=small)
+
+## 2 Processing Values
+All relative units (%, em, rem, vh, vw) are finally converted to absolute unit, pixels (px).
+
+At this phase, all CSS values become computed values not the specified values.
+
+![CSS relative value conversion to px](https://pbs.twimg.com/media/E2PRkJzXsAUzHnR?format=jpg&name=medium)
+
+## 3 The visual formatting model.
+This is the algorithm that calculates boxes & determines the layout of these boxes, for each element in the render tree, to determine the page's final layout.
+
+![visual-formatting-model-css](https://pbs.twimg.com/media/E2PTmXoWEA0n-5k?format=png&name=900x900)
+
+-------------------------
+
+So, that’s how CSS is parsed on the browser. If you enjoyed this post then consider engaging with the original post on [Twitter](https://twitter.com/swastikJsDev/status/1397195835365023749?s=20)..
+
+Also, [follow me there](https://twitter.com/swastikjsdev), I keep sharing stuff on full-stack web development and design.
+
+Thank You!
