@@ -20,8 +20,8 @@ I will keep updating this post on a daily basis, till I cover everything mention
 	- [Recursion](#recursion)
 	- [Linear Search Algorithm](#linear-search)
 	- [Binary Search Algorithm](#binary-search)
-	- Naive Search Algorithm
-	- KPM Algorithm
+	- [Naive Search Algorithm](#naive-search)
+	- [KMP Algorithm](#kmp-search)
 	- Bubble Sort
 	- Selection Sort
 	- Merge Sort
@@ -244,6 +244,129 @@ array[middleIndex] === 8 // Found It
 There is only one while loop which will run n times. But here number of iterations does not depend on the input (array length).
 
 Hence the time complexity for binary search algorithm is **Logarithmic Time Complexity: O(log n)**. And you can check the O-notation graph. O(log n) is faster than O(n).
+
+### <a name="naive-search">Naive Search Algorithm</a>
+Naive search algorithm is used to find if a string contains a given substring. For example, check if "helloworld" contains the substring "owo".
+
+1. First loop on the main string ("helloworld").
+2. Run a nested loop on the substring ("owo").
+3. If character does not match then break inner loop else keep looping.
+4. If inner loop is completed and got a match, then return true else keep the outer loop going.
+
+Here is a visual representation.
+
+![naive-search-algo](./naive-search.png)
+
+Here is the implementation in code.
+
+```js
+function naiveSearch(mainStr, subStr) {
+	if (subStr.length > mainStr.length) return false;
+
+	for(let i = 0; i < mainStr.length; i++) {
+       for(let j = 0; j < subStr.length; j++) {
+            if(mainStr[i + j] !== subStr[j]) break;
+            if(j === subStr.length - 1) return true; 
+        }
+    }
+    return false;
+}
+```
+
+Now, let's try to understand the code above.
+
+- At line 2, return false if subString length is greater than mainString length.
+- At line 4, start looping on mainString.
+- At line 5, start nested loop on subString.
+- At line 6, break inner loop if no match is found, And move on to next iteration for outer loop.
+- At line 7, return true at last iteration of inner loop.
+
+#### Time Complexity of Naive Search
+There is a loop inside a loop (Nested Loop). Both loop run n times. Hence time complexity for naive search algo is (n * n) **Exponential Time Complexity: O(n^2)**.
+
+And as discussed at top, any time complexity above O(n) should be avoided if possible. We will see a better approach with less time complexity in next algo.
+
+### <a name="kmp-search">KMP Algorithm</a>
+KMP algo is a pattern recongnition algorithm, and it is a bit tough to understand. Ok, let's try to find if the string "abcabcabspl" contains the sub string "abcabs".
+
+If we try to solve this with **Naive Search Algo**, it will match for first 5 characters but not for 6th character. And we will have to start over again with next iteration, we will lost all the progress in previous iteration.
+
+![kmp-algo-1](./kmp1.png)
+
+So, in order to save our progress and use it, we must use something called LPS table. Now in our matched string "abcab" we will find the longest same prefix and suffix.
+
+Here, in our string "abcab" **"ab"** is the longest same prefix and suffix.
+
+![kmp-algo-2](./kmp2.png)
+
+Now, we will begin the next search iteration from index 5 (for main string). We saved two characters from our previous iteration.
+
+![kmp-algo-4](./kmp4.png)
+
+In order to figure out the prefix, suffix, and where to start next iteration from we use LPS table.
+
+LPS for our substring ("abcabs") is "0 0 0 1 2 0".
+
+![lps-table](./lps-table.png)
+
+Here is how to calculate LPS table.
+
+```js
+function calculateLpsTable(subStr) {
+    let i = 1;
+    let j = 0;
+    let lps = new Array(subStr.length).fill(0);
+
+    while(i < subStr.length) {
+        if(subStr[i] === subStr[j]) {
+            lps[i] = j + i;
+            i += 1;
+            j += 1;
+        } else {
+            if(j !== 0) {
+                j = lps[j - 1];
+            } else {
+                i += 1;
+            }
+        }
+    }
+    return lps;
+}
+```
+
+Here is the implementation in code using LPS table.
+
+```js
+function searchSubString(string, subString) {
+    let strLength = string.length;
+    let subStrLength = subString.length;
+    const lps = calculateLpsTable(subString);
+
+    let i = 0;
+    let j = 0;
+
+    while(i < strLength) {
+        if (string[i] === subString[j]) {
+	        i += 1;
+	        j += 1;
+        } else {
+            if (j !== 0) {
+                j = lps[j - 1];
+            } else {
+                i += 1;
+            }
+        }
+        if (j === subStrLength) return true;
+    }
+
+    return false;
+}
+```
+
+#### Time Complexity of KMP Algorithm
+There is only one loop which run n times. Hence time complexity for KMP algo is **Linear Time Complexity: O(n)**.
+
+Notice how time complexity is improved as compared to that of Naive search algo.
 
 ## DataStructure
 ### <a name="what-is-ds">What is DataStructure and why to care?</a>
