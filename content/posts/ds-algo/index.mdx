@@ -22,9 +22,8 @@ I will keep updating this post on a daily basis, till I cover everything mention
 	- [Binary Search Algorithm](#binary-search)
 	- [Naive Search Algorithm](#naive-search)
 	- [KMP Algorithm](#kmp-search)
-	- Bubble Sort
-	- Selection Sort
-	- Merge Sort
+	- [Bubble Sort](#bubble-sort)
+	- [Merge Sort](#merge-sort)
 	- Quick Sort
 	- Radix Sort
 - DataStructure
@@ -367,6 +366,115 @@ function searchSubString(string, subString) {
 There is only one loop which run n times. Hence time complexity for KMP algo is **Linear Time Complexity: O(n)**.
 
 Notice how time complexity is improved as compared to that of Naive search algo.
+
+### <a name="bubble-sort">Bubble Sort Algorithm</a>
+Sorting means rearranging data in ascending or descending order. Bubble sort is one of many sorting algorithms.
+
+In bubble sort algo, we swap the larger number to the end by comparing each number with the previous number. Here is a visual representation.
+
+![bubble-sort](./bubble-sort.png)
+
+Bubble sort code implementation.
+
+```js
+function bubbleSort(array) {
+    let isSwapped;
+
+    for(let i = array.length; i > 0; i--) {
+        isSwapped = false;
+
+        for(let j = 0; j < i - 1; j++) {
+            if(array[j] > array[j + 1]) {
+                [array[j], array[j+1]] = [array[j+1], array[j]];
+                isSwapped = true;
+            }
+        }
+
+        if(!isSwapped) {
+            break;
+        }
+    }
+    return array;
+}
+```
+
+Let's try to understand the above code.
+
+- Looping from end of array with variable i towards beginning.
+- Start inner loop with variable j until (i - 1).
+- If array[j] > array[j + 1] swap them.
+- return sorted array.
+
+#### Time Complexity of Bubble Sort Algorithm
+There is a nested loop and both loop runs n times, so time complexity for this algo is (n * n) that is **Exponential Time Complexity O(n^2)**.
+
+### <a name="merge-sort">Merge Sort Algorithm</a>
+Merge sort algorithm follows divide and conquer approach. It's a combination of two things - merge and sort.
+
+In this algo first we divide main array into multiple indivisual sorted arrays.
+
+![merge-sort](./merge-sort.png)
+
+Then we merge the indivisual sorted elements together into final array.
+
+Let's look at the implementation in code.
+
+Merge Sorted Array
+```js
+function mergeSortedArray(array1, array2) {
+    let result = [];
+    let i = 0;
+    let j = 0;
+
+    while(i < array1.length && j < array2.length) {
+        if(array1[i] < array2[j]) {
+            result.push(array1[i]);
+            i++;
+        } else {
+            result.push(array2[j]);
+            j++;
+        }
+    }
+
+    while (i < array1.length) {
+        result.push(array1[i]);
+        i++;
+    }
+
+    while (j < array2.length) {
+        result.push(array2[j]);
+        j++;
+    }
+
+    return result;
+}
+```
+
+The above code merges two sorted array into a new sorted array.
+
+Merge Sort Algorithm
+```js
+function mergeSortedAlgo(array) {
+    if(array.length <= 1) return array;
+
+    let midPoint = Math.floor(array.length / 2);
+    let leftArray = mergeSortedAlgo(array.slice(0, midPoint));
+    let rightArray = mergeSortedAlgo(array.slice(midPoint));
+
+    return mergeSortedArray(leftArray, rightArray);
+}
+```
+
+The above algo uses recursion to divide the array into multiple single element array.
+
+#### Time Complexity of Merge Sort Algorithm
+Let's try to calculate time complexity of merge sort algorithm. So, taking our previous example ([6, 3, 5, 2]), it took 2 steps to divide it into multiple single element array.
+
+**```It took 2 steps to divide an array of length 4 - (2^2)```**.
+
+Now if we double the length of array (8), it will take 3 steps to divide - (2^3). Means doubling the array length didn't doubled the steps.
+
+Hence time complexity of merge sort algorithm is **Logarithmic Time Complexity O(log n)**
 
 ## DataStructure
 ### <a name="what-is-ds">What is DataStructure and why to care?</a>
