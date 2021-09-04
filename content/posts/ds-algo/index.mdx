@@ -24,8 +24,8 @@ I will keep updating this post on a daily basis, till I cover everything mention
 	- [KMP Algorithm](#kmp-search)
 	- [Bubble Sort](#bubble-sort)
 	- [Merge Sort](#merge-sort)
-	- Quick Sort
-	- Radix Sort
+	- [Quick Sort](#quick-sort)
+	- [Radix Sort](#radix-sort)
 - DataStructure
 	- [What is DataStructure and why to care?](#what-is-ds)
 	- Single linked list DS
@@ -474,7 +474,124 @@ Let's try to calculate time complexity of merge sort algorithm. So, taking our p
 
 Now if we double the length of array (8), it will take 3 steps to divide - (2^3). Means doubling the array length didn't doubled the steps.
 
-Hence time complexity of merge sort algorithm is **Logarithmic Time Complexity O(log n)**
+Hence time complexity of merge sort algorithm is **Logarithmic Time Complexity O(log n)**.
+
+### <a name="quick-sort">Quick Sort Algorithm</a>
+Quick sort is one of the fastest sorting algorithm. In quick sort we select a single element known as pivot and we will move all element (smaller than pivot) to the left of pivot.
+
+A visual representation.
+
+![quick-sort](./quick-sort.png)
+
+We will repeat this process for array to left and right of pivot until the array is sorted.
+
+Code implementation
+
+Pivot Utility
+```js
+function pivotUtility(array, start=0, end=array.length - 1) {
+    let pivotIndex = start;
+    let pivot = array[start];
+    
+    for(let i = start + 1; i < array.length; i++) {
+        if(pivot > array[i]) {
+            pivotIndex++;
+            [array[pivotIndex], array[i]] = [array[i], array[pivotIndex]];
+        }   
+    }
+
+    [array[pivotIndex], array[start]] = [array[start], array[pivotIndex]];
+    return pivotIndex;
+}
+```
+
+The above code identifies the correct position of pivot and returns that position index.
+
+```js
+function quickSort(array, left=0, right=array.length-1) {
+    if (left < right) {
+        let pivotIndex = pivotUtility(array, left, right);
+        quickSort(array, left, pivotIndex - 1);
+        quickSort(array, pivotIndex + 1, right);
+    }
+
+    return array;
+}
+```
+
+The above code uses recursion to keep moving pivot to it's correct position for left and right array of pivot.
+
+#### Time Complexity of Quick Sort Algorithm
+BEST CASE: Logarithmic Time Complexity - O(n log n) <br />
+AVERAGE CASE: Logarithmic Time Complexity - O(n log n) <br />
+WORST CASE: O(n^2) <br />
+
+### <a name="radix-sort">Radix Sort Algorithm</a>
+![radix-sort](./radix-sort-animation.gif)
+
+Radix sort is also know as Bucket sort algorithm.
+
+Here first we build 10 buckets of index from 0 to 9. Then we take last character in each number and push the number to the corresponding bucket. Retrive the new order and repeat for the second last character of each number.
+
+Keep repeating the above process till the array is sorted.
+
+Implementation in code.
+
+// Count Digits: The code below counts the number of digits the given element have.
+```js
+function countDigits(number) {
+	if(number === 0) return 1;
+	
+	return Math.floor(Math.log10(Math.abs(number))) + 1;
+}
+```
+
+// Get Digit: The code below gives the digit at index i from right.
+```js
+function getDigit(number, index) {
+	const stringNumber = Math.abs(number).toString();
+	const currentIndex = stringNumber.length - 1 - index;
+
+	return stringNumber[currentIndex] ? parseInt(stringNumber[currentIndex]) : 0;
+}
+```
+
+// MaxDigit: The below snippet finds the number with maximum digits.
+```js
+function maxDigit(array) {
+	let maxNumber = 0;
+
+	for(let i = 0; i < array.length; i++) {
+		maxNumber = Math.max(maxNumber, countDigits(array[i]));
+	}
+	
+	return maxNumber;
+}
+```
+
+// The Radix Algo: Utilises all the above snippets to sort the array.
+```js
+function radixSort(array) {
+	let maxDigitCount = maxDigits(array);
+	let digitBucket = Array.from({length: 10}, () => []);
+
+	for(let i = 0; i < maxDigitCount; i++) {
+		for(let j = 0; j < array.length; j++) {
+			let lastDigit = getDigit(array[j], i);
+			digitBucket[lastDigit].push(array[j]);
+		}
+
+		array = [].concat(...digitBucket);
+	}
+
+	return array;
+}
+```
+
+#### Time complexity of Radix Sort Algorithm
+There is a nested for loop, and we know that time complexity for a nested for loop is O(n^2). But in this case both for loop does not run n times.
+
+The outer loop runs k (maxDigitCount) times and inner loop runs m (length of array) times. Hence time complexity of Radix Sort is O(k x m) - (where k x m = n) **Linear time complexity O(n)**
 
 ## DataStructure
 ### <a name="what-is-ds">What is DataStructure and why to care?</a>
