@@ -573,9 +573,10 @@ function maxDigit(array) {
 ```js
 function radixSort(array) {
 	let maxDigitCount = maxDigits(array);
-	let digitBucket = Array.from({length: 10}, () => []);
 
 	for(let i = 0; i < maxDigitCount; i++) {
+	    let digitBucket = Array.from({length: 10}, () => []);
+
 		for(let j = 0; j < array.length; j++) {
 			let lastDigit = getDigit(array[j], i);
 			digitBucket[lastDigit].push(array[j]);
