@@ -1,0 +1,43 @@
+---
+title: JavaScript Loose Equality vs Strict Equality check
+author: Swastik Yadav
+date: 2021-06-04
+hero: ./banner.jpg
+excerpt: What is the difference b/w loose equality (==) and strict equality (===) check in JavaScript.
+---
+Hello Everyone!
+
+In this post we will explore the difference between JS **loose equality (==)** and **strict equality (===)** check.
+
+Here is the simplest definition
+
+- *Loose equality (==) checks for value only.*
+- *Strict equality (===) checks for value as well as DataType.*
+
+But wait, there is something more to it. Let's understand the workings of both of them one by one.
+
+## Strict Equality (===)
+Strict equality first checks for DataType, If datatype is same then it checks for value, else it returns false.
+
+Ex:
+```js
+console.log("55" === 55);
+// false - Because datatype is different even though value is same.
+```
+
+![strict-equality](./strict-equality.png)
+
+## Loose Equality (==)
+Loose equality works similar to strict equality. The only difference is that in loose equality if datatype is different, it performs an **Implicit type conversion** and then compares the value.
+
+Ex:
+```js
+console.log("55" == 55);
+// true - Because implicit conversion will change string "55" to number 55 then compare value.
+```
+
+![loose-equality](./loose-equality.png)
+
+If you enjoyed or found this post helpful, please consider joining my weekly Newsletter below.
+
+Thank You!
