@@ -29,7 +29,7 @@ console.log(string1, string2);
 // World Hello
 ```
 
-In the above code string2 copies the value of string1, and when value of string1 changes it does not affect the copied value of string2 because **both string1 and string2 points to different memory**.
+In the above code string2 copies the value of string1, and when value of string1 changes it does not affect the copied value of string2 because **both string1 and string2 refers to different points in memory**.
 
 ![copy-by-value](./value.png)
 
@@ -55,11 +55,15 @@ console.log(person1["name"], person2["name"]);
 // Rahul Rahul
 ```
 
-In the above code snippet person2 copies the reference of person1, so **when person1 changes it also affects the person2** because **both person1 and person2 points to the same memory**.
+In the above code snippet person2 copies the reference of person1, so **when person1 changes it also affects the person2** because **both person1 and person2 refers to the same point in memory**.
 
 ![copy-by-reference](./reference.png)
 
 That's what it means to copy by reference.
+
+------------------------------------------
+
+If you want to learn more about duplicating and cloning JavaScript primitives and objects, please read this article - [Shallow cloning vs Deep cloning](./shallow-cloning-vs-deep-cloning)
 
 ------------------------------------------
 
