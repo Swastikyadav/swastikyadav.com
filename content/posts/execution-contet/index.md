@@ -1,5 +1,5 @@
 ---
-title: How JavaScript works behind the scene - Execution Context
+title: How JavaScript works behind the scene - Execution Context and Call Stack
 author: Swastik Yadav
 date: 2021-07-02
 hero: ./banner.png
@@ -61,6 +61,17 @@ In execution context:
 If there are nested functions, then further **Function Execution Context** are created in GEC (both declaration and execution phases runs again for the nested function).
 
 ![execution-phase](./exec-phase.png)
+
+One important thing to note is that, *Once a function is returned, it is cleared / removed from the execution context*. And it is done with the **Call Stack**.
+
+## CallStack
+Execution context is maintained using a "Call Stack". A stack is a LIFO (last in first out) data structure. In a stack we only insert or delete elements at the top of stack, think in terms of JavaScript Array.push and Array.pop method.
+
+There can be only one execution context running at a time, that's why **JavaScript is a single threaded language**.
+
+Whenever an execution context is halted (may be due to some delay or data fetching), a different execution context becomes the current running EC. The halted EC might then at a later point pick back up where it left.
+
+![call-stack](./call-stack.png)
 
 ## Hoisting
 The concept that variables are allocated memory (declared) before the execution of code is known as hoisting.
