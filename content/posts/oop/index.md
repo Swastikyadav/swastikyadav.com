@@ -81,3 +81,204 @@ student1.percentage(); // 99%
 ```
 
 Object.create takes an object as parameter and puts that parameter into dunder-proto. For example in the above code snippet percentage method is added in dunder proto, it is not in the main object.
+
+## Pseudo Classical pattern of creating objects
+Pseudo classical pattern uses the **new** keyword with constructor function to create objects. The new keyword does 3 things.
+
+1. Creates a new object implicitly, named **this**.
+2. Puts the new object (this) in function prototype.
+3. Implicitly returns obj (this).
+
+When we use **new** keyword, methods from prototype goes to dunder-proto.
+
+1. this = {}
+2. this.__proto__ = createStudent.prototype
+3. return obj (this)
+
+For instance:
+```js
+function CreateStudent(name, batch, marks, maxMarks) {
+  this.name = name;
+  this.batch = batch;
+  this.marks = marks;
+  this.maxMarks = maxMarks;
+}
+
+CreateStudent.prototype = {
+  percentage: function() {
+    return `${this.marks*100 / this.maxMarks}%`;
+  }
+}
+
+let student1 = new CreateStudent("Swastik", 9, 100, 100);
+student1.percentage(); // 100%
+```
+
+The **new** keyword implicitly creates the object, sets the method to dunder-proto, and implicitly returns the object.
+
+## Classes
+Classes are a syntactic sugar to create objects. In the last example we added the percentage method to CreateStudent.prototype manually. With classes all that is done automatically.
+
+- The **new** keyword calls the constructor and implicitly creates and returns the **this** object.
+- Classes accepts only methods (functions).
+- You will find the methods in the dunder-proto of the object.
+
+For instace:
+```js
+class CreateStudent {
+  constructor(name, batch, marks, maxMarks) {
+    this.name = name;
+    this.batch = batch;
+    this.marks = marks;
+    this.maxMarks = maxMarks;
+  }
+
+  percentage() {
+    return `${this.marks*100 / this.maxMarks}%`;
+  }
+}
+
+let student1 = new CreateStudent("Swastik", 9, 89, 100);
+student1.percentage(); // 89%
+student1.percentage === CreateStudent.prototype.percentage; // true
+```
+
+So, that's how we create objects with classes. Enumerable flag for class methods are by default set to false, because we don't want methods in [**for...in**](./difference-between-for-of-and-and-for-in-loop) loop result.
+
+### Class Inheritance
+Class inheritance is a way to create new functionality on top of existing one. Let's say we have an Animal class and a Rabbit class based on Animal class.
+
+```js
+// Animal Class
+class Animal {
+  constructor(name) {
+    this.speed = 0;
+    this.name = name;
+  }
+
+  run(speed) {
+    this.speed = speed;
+    alert(`${this.name} runs with speed ${this.speed}.`);
+  }
+  
+  stop() {
+    this.speed = 0;
+    alert(`${this.name} stands still.`);
+  }
+}
+
+let animal = new Animal("My animal");
+
+// Rabbit Class
+class Rabbit extends Animal {
+  hide() {
+    alert(`${this.name} hides!`);
+  }
+}
+
+let rabbit = new Rabbit("White Rabbit");
+
+rabbit.run(5); // White Rabbit runs with speed 5.
+rabbit.hide(); // White Rabbit hides!
+```
+
+Rabbit class does not have run method but it can access it from Animal.prototype as we have extended Rabbit class.
+
+![class-extend](./class-extend.png)
+
+### The Super keyword
+The super keyword allows us to call parent method and constructor in our extended class.
+
+- **super.method(...)** calls a parent method.
+- **super(...)** calls parent constructor.
+
+For instance:
+```js
+class Rabbit extends Animal {
+  constructor() {
+    super(); // calls the parent constructor
+  }
+
+  hide() {
+    alert(`${this.name} hides`);
+  }
+
+  stop() {
+    super.stop(); // calls stop method of parent
+    this.hide()
+  }
+}
+
+let rabbit = new Rabbit("White Rabbit");
+
+rabbit.run(5); // White Rabbit runs with speed 5.
+rabbit.stop(); // White Rabbit stands still. White Rabbit hides!
+```
+
+In the above code snippet, Rabbit class defines a stop method which calls the stop method of Animal with super.
+
+### The static method
+We can also assign a method to the class itself, not to its "prototype". Such methods are called static methods. They are prepended by **static** keyword.
+
+```js
+class User {
+  static staticMethod() {
+    console.log(this === User);
+  }
+}
+
+User.staticMethod(); // true
+```
+
+Static methods are used for functionality that belongs to the class "as a whole". It does not relate to a concrete class instance.
+
+Static properties and methods are inherited. For class B extends A the prototype of the **class B itself points to A: B.[[Prototype]] = A**. So if a field is not found in B, the search continues in A.
+
+### Private and protected properties and methods
+- **Protected** fields starts with **_**. Protected field should only be accessible from its class and classes inheriting from it. Protected field is not supported at the language level.
+- **Private** fields starts with **#**. Private field should only be accessibe from inside the class.
+
+```js
+class CoffeeMachine {
+    #waterAmount = 0;
+
+    set waterAmount(value) {
+        if (value < 0) {
+            value = 0;
+        }
+        this.#waterAmount = value;
+    }
+
+    get waterAmount() {
+        return this.#waterAmount;
+    }
+
+    constructor(power) {
+        this.power = power;
+    }
+}
+
+let coffeeMachine1 = new CoffeeMachine(100);
+coffeeMachine1.#waterAmount; // Error - Private method cannot be accessed outside of the class.
+coffeeMachine1.waterAmount; // 0;
+coffeeMachine1.waterAmount = -20;
+coffeeMachine1.waterAmount; // 0;
+```
+
+Private method #waterAmount is only accessible inside the class itself.
+
+## The this keyword
+The **this** keyword refers to the object it belongs to. There are four rules to identify, where the this keyword is refering.
+
+1. fn() -> window
+2. obj.fn() -> this referes to obj. If any function is using **this** then **this** becomes the object at left of (.).
+3. bind, call, apply -> "this" value is specified.
+4. new keyword creates and returns this implicitly.
+
+**"this"** changes at runtime.
+
+-----------------------------------
+
+That's it for this post. I hope you found it helpful, if so, please do share and subscribe to my newsletter below or [here](./subscribe).
+
+Thank You!
