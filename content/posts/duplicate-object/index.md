@@ -62,12 +62,12 @@ let me = {
   }
 }
 
-let myManualDeepClone = {...a, address: {...a.address}};
+let myManualDeepClone = {...me, address: {...me.address}};
 
 me.address.city = "Bihar";
 
 console.log(me.address.city, myManualDeepClone.address.city);
-// NewDelhi, Bihar
+// Bihar, NewDelhi
 ```
 
 But what if you don't want to copy all your nested objects manually? We can simply **stringify** our object and **parse** it right after.
@@ -90,7 +90,7 @@ let myDeepClone = JSON.parse(JSON.stringify(me));
 me.address.city = "Bihar";
 
 console.log(me.address.city, myDeepClone.address.city);
-// NewDelhi, Bihar
+// Bihar, NewDelhi
 ```
 
 Note: There is no pitfalls with cloning primitive datatypes, because they are by default refers to different points in memory.
