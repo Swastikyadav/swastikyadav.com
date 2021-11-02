@@ -12,7 +12,7 @@ function Subscription() {
         parties.
       </p>
 
-      <form action="https://www.getrevue.co/profile/codeswastik/add_subscriber" method="post" id="revue-form" name="revue-form"  target="_blank">
+      <form action="https://www.getrevue.co/profile/8020lessons/add_subscriber" method="post" id="revue-form" name="revue-form"  target="_blank">
         <input className="revue-form-field" placeholder="Your @email.com" type="email" name="member[email]" id="member_email" required />
         <br />
         <input className="revue-form-submit" type="submit" value="Subscribe" name="member[subscribe]" id="member_submit" />
