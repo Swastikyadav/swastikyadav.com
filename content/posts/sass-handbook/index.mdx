@@ -1,0 +1,409 @@
+---
+title: The Sass handbook and how does it work?
+author: Swastik Yadav
+date: 2021-12-10
+hero: ./banner.jpeg
+excerpt: let's dive deep into the world of CSS preprocessor Sass. We will learn what is Sass, how to use it, and how does it work?
+---
+
+Hello Developers,
+
+So, today let's dive deep into the world of CSS preprocessor Sass. We will learn what is Sass, how to use it, and how does it work?
+
+## What is Sass?
+Sass stands for **syntactically awesome style sheets**. Sass is a CSS preprocessor, an extension of CSS that adds power and elegance to the basic CSS.
+
+Regular CSS gets very messy very quickly, That's why we use Sass, it provides us really handy features to make our CSS code reusable and logical.
+
+## How does Sass work?
+Instead of writing regular CSS code in a `.css` file extension, we write sass code in a `.scss` file extension.
+
+Then we run a compiler and that compiler converts the sass code into regular CSS code. We need to process our sass code first and that's why it is called **CSS preprocessor**.
+
+## How to install and compile Sass locally?
+Before actually exploring the main Sass features let's see how to install and compile Sass locally.
+
+Step 1: First of all we need to initiate the package.json file. So for that go to your project directory and run `npm init` or `yarn init`. Depending on what you use npm or yarn.
+
+This will create a file `package.json` which looks something like this.
+
+```js
+{
+  "name": "project name",
+  "description": "project description",
+  "main": "index.js",
+  "scripts": {
+    ...
+  }
+  "author": "Your name"
+}
+```
+
+Step 2: Next let's install the Sass compiler in our project. Run `npm install node-sass` or `yarn add node-sass` in the command line.
+
+Now our package.json file should show node-sass as a dependency.
+
+```js
+{
+  "name": "project name",
+  "description": "project description",
+  "main": "index.js",
+  "scripts": {
+    ...
+  }
+  "author": "Your name",
+  "dependencies": {
+    "node-sass": "^4.5.3"
+  } 
+}
+```
+
+Step 3: Let's write a script in package.json that will compile the CSS code from sass code.
+
+Here is the ex folder structure.
+
+```
+app
+└── index.html
+└── css folder
+    └── style.css
+└── sass folder
+    └── style.scss
+└── package.json
+```
+
+The script starts with the package name (node-sass) followed by the sass file path (sass/style.scss) followed by the final CSS file path (css/style.css).
+
+```js
+{
+  "name": "project name",
+  "description": "project description",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "node-sass sass/style.scss css/style.css -w"
+  }
+  "author": "Your name",
+  "dependencies": {
+    "node-sass": "^4.5.3"
+  } 
+}
+```
+
+Step 4: And the last step is to run the script. Run `npm run compile:sass` or `yarn run compile:sass`.
+
+That's it, we are ready to start writing sass code. 
+
+## Main features of Sass
+Here are the main features of Sass, let's cover these features one by one in this post.
+
+- Variables: For reusable values such as color, font-size, and spacing.
+- Nesting: To nest selectors inside of one another, allowing us to write less code.
+- Partials and Imports: To write CSS in different files and importing them all in single file.
+- Mixins: TO write reusable CSS code.
+- Extends: To make different selectors inherit declarations that are common to all of them.
+
+## Variables
+A variable is used so that we can use that same value everywhere in our code, for example brand color.
+
+`style.scss`
+```scss
+$color-primary: #F56B27;
+$light-color: #fff;
+
+.navigation {
+  background-color: $color-primary;
+}
+
+.nav-link {
+  color: $light-color;
+}
+```
+
+And if we ever need to change the brand color, we do it just at one place in the variable.
+
+## Nesting selectors
+Let's say we have the following navigation markup.
+
+`index.html`
+```html
+<nav class="navigation">
+  <ul class="nav-list">
+    <li class="nav-list-item"><a href="#">Home</a></li>
+    <li class="nav-list-item"><a href="#">About Us</a></li>
+    <li class="nav-list-item"><a href="#">Contact Us</a></li>
+  </ul>
+</nav>
+```
+
+If we need to style the `<li>` which is nested inside `<ul>` which is again nested inside `<nav>`. In regular CSS it will be done the following way.
+
+`style.css`
+```css
+// Styling nav
+.navigation {
+  background-color: #F56B27;
+}
+
+// Styling ul which is nested inside nav
+.navigation .nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+// Styling li which is nested inside ul
+.navigation .nav-list .nav-list-item a {
+  color: #fff;
+  font-size: 15px;
+}
+
+// Change li color to blue on hover
+.navigation .nav-list .nav-list-item:hover {
+  color: #00f;
+}
+```
+
+Now, let's do the same styling, but this time with Sass.
+
+`style.scss`
+```scss
+$brand-color: #F56B27;
+$light-color: #fff;
+$hover-link-color: #00f;
+$link-font-size: 15px;
+
+.navigation {
+  background-color: $brand-color;
+
+  .nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+
+    .nav-list-item a {
+      color: $light-color;
+      font-size: $link-font-size;
+
+      &:hover {
+        color: $hover-link-color;
+      }
+    }
+  }
+}
+```
+
+We can literally nest selectors the way it is nested in HTML. Now, isn't it cool?
+
+> Note: In the above snippet we nested 3 levels deep. And to maintain readability we shouldn't go deeper than this.
+
+## Mixins
+Mixins are used to write reusable parts of CSS code. For example let's say we have a footer with 3 links, which needs to be aligned horizontally.
+
+So, we will use flex for that. But notice in the last example also we used flex to align navigation links horizontally.
+
+`index.html`
+```html
+<nav>
+  ...
+</nav>
+
+<footer>
+  <ul class="footer-nav-list">
+    <li class="footer-list-item"><a href="#">More info</a></li>
+    <li class="footer-list-item"><a href="#">Careers</a></li>
+    <li class="footer-list-item"><a href="#">Team</a></li>
+  </ul>
+</footer>
+```
+
+So, the following code will repeat for both navigation and footer.
+
+```css
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+
+  ...
+}
+
+.footer-nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+```
+
+Instead of having to write the same code twice, let's write mixins to have a reusable block of code.
+
+`style.scss`
+```scss
+...
+
+// This is the reusable block of code
+@mixin flex-between {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+} 
+
+.navigation {
+  ...
+
+  .nav-list {
+    @include flex-between; // used mixin here
+
+    ...
+  }
+}
+
+footer {
+  .footer-nav-list {
+    @include flex-between; // used mixin here
+  }
+}
+```
+
+In the above snippet, we used the `flex-between` mixin twice, without having to write the whole code twice. We just executed the DRY (Do Not Repeat Yourself) principle.
+
+## Extends
+Usecase of Extends is very similar to that of mixins but fundamentally they are different. The diff becomes clear in the final compiled CSS file.
+
+After compilation:
+- The code in mixin is pasted where ever we include it.
+- Whereas in extends it is the other way around. The selector is pasted where the code is defined.
+
+Let me explain this with an example.
+
+Let's say we have two different buttons with similar styles.
+
+`index.html`
+```html
+<nav class="navigation">
+  <button class="signup-btn">Sing Up</button>
+  <button class="login-btn">Login In</button>
+</nav>
+```
+
+First let's use mixins for similar styling.
+`style.scss`
+```scss
+@mixin button-style {
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 100px;
+}
+
+.signup-btn {
+ @include button-style;
+}
+
+.login-btn {
+  @include button-style;
+}
+```
+
+Here is the result of final compiled CSS.
+
+compiled `style.css`
+```css
+.signup-btn {
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 100px;
+}
+
+.login-btn {
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 100px;
+}
+```
+
+Now let's use **extends** to make the code reusable. And you will see the difference in the compiled CSS file.
+
+`style.scss`
+```scss
+// extends starts with %
+%button-style {
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 100px;
+}
+
+.signup-btn {
+ @extend %button-style;
+}
+
+.login-btn {
+  @extend %button-style;
+}
+```
+Here is the compiled CSS file when we used extends.
+
+compiled `style.css`
+```css
+.signup-btn,
+.login-btn {
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 100px;
+}
+```
+
+Look at the compiled CSS version of both (mixin and extend) and the fundamental difference will become clear to you.
+
+## Partials and imports
+We can also separate sass files as per the specific UI needs using partials and imports.
+
+Let's say our app has two sections a header and a footer. We can have 3 sass files.
+
+- One sass file for header.
+- Second sass file for footer.
+- And third main sass file will import both header and footer.
+
+Here header and footer are partial sass files. The partial file name begins with an underscore (_).
+
+`sass/_header.scss`
+```scss
+.header {...}
+```
+
+`sass/_footer.scss`
+```scss
+.footer {...}
+```
+
+`sass/style.scss`
+```scss
+@import "header";
+@import "footer";
+
+...
+```
+
+Final folder structure
+```
+app
+└── index.html
+└── css folder
+    └── style.css
+└── sass folder
+    └── style.scss
+    └── _header.scss
+    └── _footer.scss
+└── package.json
+```
+
+------------------------------------------------------------
+
+That's it for this post. I hope all this will be useful and you learned something new.
+
+I run a weekly Newsletter where I share epic content on web-dev and programming. Subscribe to build your skillset and become a better developer in 10 minutes a week. Subscribe below.
+
+Thank You!
