@@ -11,7 +11,7 @@ module.exports = {
     social: [
       {
         name: `twitter`,
-        url: `https://twitter.com/swastikJsDev`,
+        url: `https://twitter.com/swastikb380`,
       },
       {
         name: `github`,
@@ -19,12 +19,12 @@ module.exports = {
       },
       {
         name: `linkedin`,
-        url: `https://www.linkedin.com/in/swastik-yadav-6386b71b5/`,
+        url: `https://www.linkedin.com/in/swastikyadav/`,
       },
-      {
-        name: `youtube`,
-        url: `https://www.youtube.com/channel/UCHs73qDeimVFGTa-MzjtnLA`,
-      },
+      // {
+      //   name: `youtube`,
+      //   url: `https://www.youtube.com/channel/UCHs73qDeimVFGTa-MzjtnLA`,
+      // },
     ],
   },
   plugins: [

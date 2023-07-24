@@ -1,10 +1,9 @@
 name: Swastik Yadav
 bio: |
-  Software Engineer, Writing about full stack web development, OOP, JavaScript, general programming, and personal life / entrepreneurship journey.
+  I help developers double their income without competing against thousands of resumes by building social presence.
 avatar: ./avatars/swastik-yadav.png
 social:
-  - url: https://twitter.com/codeSwastik
+  - url: https://twitter.com/swastikb380
   - url: https://github.com/Swastikyadav
-  - url: https://www.linkedin.com/in/swastik-yadav-6386b71b5/
-  - url: https://www.youtube.com/channel/UCHs73qDeimVFGTa-MzjtnLA
+  - url: https://www.linkedin.com/in/swastikyadav/
 featured: true
