@@ -1,0 +1,125 @@
+---
+title: How map() and reduce() Array method works in JavaScript.
+author: Swastik Yadav
+date: 2023-06-18
+hero: ./hero.png
+excerpt: Today let's implement our own version of the **map()** and **reduce()** array methods in JavaScript.
+---
+
+Hello Everyone,
+
+Today let's implement our own version of the **map()** and **reduce()** array methods in JavaScript.
+
+The actual implementation of the inbuilt array methods are way more complex than this. What we are aiming towards is to understand the Array methods better.
+
+## myMap()
+First let's understand what does the built in map method do.
+
+![js-map](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/adpktyw79d7iowhhu3co.png)
+
+- Takes an array as input -> returns an array as output.
+- Iterates over all the elements of array.
+- Returns an array of same length as the original array.
+- Does not mutate the original array.
+
+Here is our implementation of the map() Array method.
+
+```js
+const numArr = [1, 2, 3, 4];
+
+function myCustomMap(callback) {
+  const newArr = [];
+  for(let i = 0; i < this.length; i++) {
+    newArr.push(callback(this[i], i, this));
+  }
+
+  return newArr;
+}
+
+Array.prototype.myMap = myCustomMap;
+
+numArr.map(elm => elm * 2); // [2, 4, 6, 8]
+numArr.myMap(elm => elm * 2); // [2, 4, 6, 8]
+```
+
+Let's see what's going on in the above snippet.
+
+1. **myCutomMap** function takes a callback (this callback is the function we write in map).
+2. We loop over all elements of array.
+3. The callback function is called with the current element and the returned value is pushed in the newArr.
+4. newArr is returned from the **myCustomMap** function.
+5. We add the **myCustomMap** function in **Array.prototype**, so that we can use it with dot notation.
+6. The **"this"** keyword in **myCustomMap** refers to the array on which the myCustomMap is used with dot notation. (numArr.myMap((elm) => elm * 2) // here "this" refers to numArr).
+
+And, that's how you build your own custom map() Array method.
+
+## myReduce()
+Now let's understand what does the built in reduce method do.
+
+![reduce-array-method](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ycwwxb0yu5pznyrk4lzu.png)
+
+- Takes an array -> Returns any type of data you want.
+- Iterates over all the elements of the array.
+- Reduces the array to any datatype you want.
+- Does not mutate the original array.
+
+```js
+const personArray = [{name: "Swastik", age: 23}, {name: "John", age: 42}, {name: "Rock", age: 45}];
+
+function myCustomReduce(callback, initialValue) {
+  for(let i = 0; i < this.length; i++) {
+    initialValue = callback(initialValue, this[i], i, this);
+  }
+
+  return initialValue;
+}
+
+Array.prototype.myReduce = myCustomReduce;
+
+personArray.reduce((acc, cv) => {
+  acc = {
+    ...acc,
+    [cv.name]: cv.name.length,
+  };
+  return acc;
+}, {}); // {Swastik: 7, John: 4, Rock: 4}
+
+personArr.myReduce((acc, cv) => {
+  acc = {
+    ...acc,
+    [cv.name]: cv.name.length,
+  };
+  return acc;
+}, {}); // {Swastik: 7, John: 4, Rock: 4}
+```
+
+Now let's see what's going on in the myCustomReduce snippet.
+
+We want to reduce the following array
+
+```
+[{name: "Swastik", age: 23}, {name: "John", age: 42}, {name: "Rock", age: 45}]
+```
+to and object with key as name and value as length of the name
+
+```
+{Swastik: 7, John: 4, Rock: 4}
+```
+Steps:
+
+1. **myCutomReduce** function takes a callback and an initialValue (this initialValue is the datatype which we want the reduce to return).
+2. We loop over all elements of array.
+3. The callback function is called with the current element and the returned value is assigned to the initialValue. With every iteration initialValue is updated.
+4. initialValue is returned from the **myCustomReduce** function.
+5. We add the myCustomReduce function in **Array.prototype**, so that we can use it with dot notation.
+6. The **"this"** keyword in myCustomReduce refers to the array on which the **myCustomReduce** is used with dot notation.
+
+And, tha't how you build your own version of the reduce Array method in JavaScript.
+
+-----------------
+
+I had a great time writing and recording about this topic, I hope you felt the same while reading and watching this.
+
+I also run a weekly newsletter, so you can join me there also.
+
+Thank You!

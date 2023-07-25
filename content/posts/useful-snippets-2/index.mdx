@@ -1,0 +1,112 @@
+---
+title: 9 useful code snippets for everyday JavaScript development || Part 2
+author: Swastik Yadav
+date: 2023-03-10
+hero: ./hero.png
+excerpt: This is the 2nd post with 4 JS code snippets that you can use in your everyday JavaScript development.
+---
+
+Hello Everyone
+
+Welcome to this JS code snippets series. Thanks a lot for all the love to the 1st part of this post.
+
+This is the 2nd post with 4 JS code snippets that you can use in your everyday JavaScript development.
+
+Read the first 5 code snippets [here](https://dev.to/swastikyadav/9-useful-code-snippets-for-everyday-javascript-development-part-1-478a).
+
+## 6. Form data to Object.
+{% embed https://youtu.be/la5QYLyjXIU %}
+This snippet will make your life a lot easier by converting form data into object which you can directly use as payload.
+
+```javascript
+const formToObject = form =>
+  Array.from(new FormData(form)).reduce(
+    (acc, [key, value]) => ({
+      ...acc,
+      [key]: value
+    }),
+    {}
+  );
+
+formToObject(document.querySelector('#form'));
+// { email: 'test@email.com', name: 'Test Name' }
+```
+
+- First use the **FormData** constructor to convert HTML form into FormData.
+- Convert FormData into an Array with **Array.from**.
+- Use **Array.prototype.reduce** to achieve the desired object from array.
+
+## 7. Generate UUID in browser
+{% embed https://youtu.be/IgMMdDoazz8 %}
+Let's say you need a unique id/key for every item in your list. With this snippet you can generate unique id/key right in your browser.
+
+```javascript
+const UUIDGeneratorBrowser = () =>
+  ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+    (
+      c ^
+      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+    ).toString(16)
+  );
+
+UUIDGeneratorBrowser(); // '7982fcfe-5721-4632-bede-6000885be57d'
+```
+
+- Use **Crypto.getRandomValues()** to generate a UUID.
+- Use **Number.prototype.toString()** to convert it to a proper UUID (hexadecimal string).
+
+## 8. Check if a string is valid JSON.
+{% embed https://youtu.be/qWId6SWgkEk %}
+If you have ever accessed an object from localStorage, you know that you get a stringified version of that object.
+
+And, now you want to check if that stringified object is valid JSON or not.
+
+The below snippet will help you exactly with that.
+
+```javascript
+const isValidJSON = (str) => {
+  try {
+    JSON.parse(str);
+    return true;
+  } catch (err) {
+    return false;
+  }
+};
+
+// Example
+isValidJSON('{"name":"John","age":30}');
+// true
+isValidJSON('{name:"John",age:30}');
+// false
+```
+
+- In the try block, we parse the string with **JSON Parse** method.
+- If string in invalid JSON, catch block will return false else true.
+
+## 9. Array to CSV
+{% embed https://youtu.be/T7Zqff4IwI0 %}
+You have an array of data, and you want to convert it to CSV, so that you can open it on excel or google sheet.
+
+Well, Vanilla JS can do that also for you.
+
+```javascript
+const arrayToCSV = (arr, delimiter = ",") =>
+  arr.map((row) => row.map((value) => `"${value}"`).join(delimiter)).join("\n");
+
+// Example
+arrayToCSV([
+  ["one", "two"],
+  ["three", "four"],
+]);
+// '"one","two"\n"three","four"'
+```
+
+- The Array map method is used to iterate over each level of the array and join each value with a defined delimiter.
+
+--------------------------
+
+So, that is it for this post. If you anyhow liked this post, make sure to show your support.
+
+I also run a weekly newsletter, so you can join me there also.
+
+Thank You!

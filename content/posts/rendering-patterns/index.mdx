@@ -1,0 +1,142 @@
+---
+title: Web rendering patterns in a nutshell.
+author: Swastik Yadav
+date: 2023-05-22
+hero: ./hero.png
+excerpt: In this post let's try to understand the **web rendering patterns** and why did we came up with all these different rendering patterns.
+---
+
+Hello Everyone!
+
+In this post let's try to understand the **web rendering patterns** and why did we came up with all these different rendering patterns.
+
+Patterns like SSR(Server side rendering), CSR(Client side rendering), Static rendering, progressive hydration, Islands Architecture, and many more are different ways to render a page on the web.
+
+But, it all started with just two patterns **SSR** and **CSR**.
+
+## Story Time
+Let me tell you a story first:
+
+It is the year 2000, HTML is rendered on the web via server-side-scripting languages like PHP & ASP. This pattern is called SSR (Server Side Rendering).
+
+2006 Ajax was introduced which allowed developers to use **JavaScript** to fetch data and make dynamic request to server without reloading a new page. This was the birth of SPA (Single Page Applications).
+
+Because of this, JavaScript libraries and frameworks were created to build the view layer of MVC.
+
+Fast forward to 2013 ReactJs was open sourced, and the next thing we know is ReactJs being the most popular JS library in the universe.
+
+But, ReactJs comes with a drawback. It is a pure CSR (client-side-rendering) library.
+
+Wait, wait, wait...
+
+Why being a pure CSR library is a drawback?
+Keep reading to get the answer.
+
+To overcome the drawback of a pure CSR library developers started to explore new ways to render the HTML on the web. 
+
+And as a result today we have all these different rendering patterns.
+
+**Story finished!** Let's get back to the post.
+
+## SSR vs CSR
+SSR and CSR are the two extreme ends of the spectrum.
+
+SSR - Good for SEO, bad for Interactivity and UX.
+CSR - Bad for SEO, good for Interactivity and UX.
+
+![Rendering Spectrum](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/v8eoqyj4xqq854u5599r.png)
+
+So, in order to get the best of both world (SSR's SEO and CSR's Interactivity) developers started experimenting with new rendering patterns.
+
+![Rendering win](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/emngzsp6o0hywrjj1pqe.png) 
+
+All the new rendering patterns under the hood uses different combinations of SSR and CSR only. 
+
+## SSR (Server Rendering)
+SSR is one of the oldest rendering methods. It generates full HTML in response to user request. This avoids too many back and forth trips between server and client.
+
+Everything is handleded before browser gets a response.
+
+![SSR](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/290eqndipyc5lnjkdlxt.png)
+
+### Pros:
+- Running page logic and rendering on the server makes it possible to avoid sending lots of JavaScript to the client, which helps achieve a fast Time to Interactive (TTI).
+- Fast FP, FCP, TTI. || Less JavaScript fast FCP and TTI.
+- In a SSR application, user won’t have to wait for the UI to load or become interactive.
+- SEO enabled: Web crawlers are easily able to crawl the SSR applications as there is no initial blank screen.
+
+### Cons:
+- generating pages on the server takes time, which can often result in a slower Time to First Byte (TTFB - time between clicking a link and the first bit of content coming in).
+- Full page reload increases the time between interaction and user have to wait longer between operations.
+
+## CSR (Client Rendering)
+CSR means rendering pages directly on the browser using JavaScript.
+
+Rendering, logic, Data fetching, templating, and routing everything is handled on the client.
+
+CSR allows to build **single page applications** which mimics a desktop app.
+
+As the size and complexity of the app increases the size of JavaScript also increases. Which in turn increases the FCP and TTI of the page.
+
+![CSR](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zrcwxsn84h7gkn17vsdp.png)
+
+### Pros:
+- Single Page Application.
+- Great user experience.
+- Routing between pages is generally faster making the CSR application seem more interactive and responsive.
+- Clear separation of client and server code.
+- No round trip to the server.
+
+### Cons:
+- Initial JS bundle loading time.
+- Not very SEO friendly: Due to large payload and waterfall network the page remains blank for a fair amount of time on initial load, and web crawlers find it difficult to index the page.
+- Data Fetching: Data can be fetched based on events like page load or click of a button, this could increase the load / interaction time of the application.
+
+## Static Rendering
+Static rendering delevers pre-rendered HTML content to the client that was generated when the site was built.
+
+![Static rendering](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0ygwl3kc5nt2408n3l2t.png)
+
+Examples - Gatsby and Jeklly
+
+### Pros:
+- Static rendering happens at build-time and offers a fast First Paint, First Contentful Paint and Time To Interactive.
+- Unlike Server Rendering, it also manages to achieve a consistently fast Time To First Byte, since the HTML for a page doesn’t have to be generated on the fly.
+- Generally, static rendering means producing a separate HTML file for each URL ahead of time.
+- SEO friendly - Web crawlers are easily able to crawl SSG pages.
+
+### Cons:
+- One of the downsides to static rendering is that individual HTML files must be generated for every possible URL.
+- This can be challenging or even infeasible when you can't predict what those URLs will be ahead of time, or for sites with a large number of unique pages.
+- Unstable for dynamic content - An SSG site needs to be built and re-deployed every time the content changes. The content displayed may be stale if the site has not been built + deployed after any content change. This makes SSG unsuitable for highly dynamic content.
+
+## Island Architecture
+The island architecture is focused on small chunks of interactivity along with server-rendered web pages.
+
+Island architecture includes any component that are interactive and might need to ship JavaScript to the brower. All other components will be rendered as static HTML.
+
+In island architecture there are multiple entry points rather than single application being in control of full-page rendering.
+
+The independent interactive scripts allows the rest of the page to be just static HTML.
+
+![Island Architecture](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/dwe85k80y9uw7wjx0cgw.png) 
+
+The general idea of an “Islands” architecture is simple: render HTML pages on the server, and inject placeholders around highly dynamic regions. These placeholders contain the server-rendered HTML output from their corresponding widget.
+
+You can think of this like a static HTML document that contains multiple separate embedded applications:
+
+In traditional rendering, we might have a `<script>` that looks for an image carousel in the page and instantiates a jQuery plugin on it.
+
+Instead, that image carousel would be rendered on the server and a dedicated `<script>` emitted for it that loads the image carousel implementation and in-place upgrades it to be interactive.
+
+---------------------------------------
+
+There are many more rendering patterns if you are interested you can read about them here (https://www.patterns.dev/posts/rendering-patterns/).
+
+---------------------------------------
+
+So, that is it for this post. If you anyhow liked this post, make sure to show your support.
+
+I also run a weekly newsletter, so you can join me there also.
+
+Thank You!

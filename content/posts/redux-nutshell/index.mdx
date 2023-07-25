@@ -1,0 +1,63 @@
+---
+title: Redux doesn't need Redux || Redux in a nutshell.
+author: Swastik Yadav
+date: 2023-04-12
+hero: ./hero.png
+excerpt: Understand the Philoshopy of Redux in a nutshell.
+---
+
+Redux
+
+A JavaScript state management library.
+
+Which is **90% convention and 10% library**.
+
+When different components of the app needs to share information back and forth, things become very messy very quickly.
+
+![redux-visual](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/y9wd7crnjshjx5mtjwdw.png)
+
+Philoshopy of Redux is to keep a single source of truth instead of each component managing their own internal state.
+
+And this dramatically simplifies the state managment proccess.
+
+Redux is based on 3 core principles:
+
+Action, Reducer, and State
+
+Remember, when I said **Redux is 90% convention**. Its these 3 concepts. These concepts are not Redux specific.
+
+Their is a saying that **“Redux don’t need Redux”**.
+
+To understand what it means, let’s take a look at Actions and Reducers.
+
+**Action**: Is an object with type & payload as key. Which is dispatched.
+
+**Reducer**: Is a **pure function** which returns a new state, based on action’s type and payload. `Pure function is the key here`.
+
+See, in React there is a hook called useReducer, so with combination of useReducer and useContext, you can achieve the same behaviour as Redux without actually using Redux.
+
+That’s where the saying comes in. (**Redux don’t need Redux**)
+
+Infact you can implement your own Redux library in just 24 lines of code.
+
+Here is the complete Redux flow.
+
+![Redux flow](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/7kuvr2m29li2w3tbfdmt.jpg)
+
+- Dispatch an action.
+- Reducer returns a new state based on action type and payload.
+- Redux store is updated and the app is synced via subscribe method.
+
+The 10% which is the actuall library are the helper methods and performance optimization techniques provided by Redux.
+
+So, that was Redux in a nutshell.
+
+-----------------------
+
+So, that is it for this post. If you anyhow liked this post, make sure to show your support.
+
+Will see you in the next post.
+
+I also run a weekly newsletter, so you can join me there also.
+
+Thank You!

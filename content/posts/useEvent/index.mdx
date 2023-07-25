@@ -1,0 +1,132 @@
+---
+title: Understanding the need for useEvent() React hook.
+author: Swastik Yadav
+date: 2023-01-07
+hero: ./hero.png
+excerpt: In this post, let's try to understand the need of *useEvent* React hook and we will see what problem the React team is trying to solve with this hook.
+---
+
+Hello Everyone,
+
+In this post, let's try to understand the need of *useEvent* React hook and we will see what problem the React team is trying to solve with this hook.
+
+> Note: *useEvent* is yet not part of React, it is just a proposal to solve the problem of unnecessary rerendering.
+
+2 weeks ago an RFC was proposed by React team in which they introduced an new React hook called the *useEvent* hook.
+
+Let's understand that RFC with two examples.
+
+## Example One
+```js
+import { useState, useCallback } from "react";
+
+export default function App() {
+  const [count, setCount] = useState(0);
+ 
+  const incrementCount = useCallback(() => {
+    setCount(count + 1);
+  }, [count]);
+
+  return (
+    <div className="App">
+      <span>{count}</span>
+      <button onClick={incrementCount}>SUBSCRIBE</button>
+    </div>
+  );
+}
+```
+The above code looks perfectly fine, It is a fairly simple counter component. But the problem is with *incrementCount* handler.
+
+Whenever the count changes the component rerenders, and on every render the *incrementCount* handler is created again from scratch.
+
+Well this will not be an issue with such a small example, but in larger applications this may create an issue with performance and optimization.
+
+Even though we have used the *useCallback* hook, but because *useCallback* takes *count* in dependency array the problem remains the same. On every count change *useCallback* will run again.
+
+### Solution: useEvent to the rescue.
+*useEvent* will solve the above problem in two ways:
+
+- No dependency array: *useEvent* will have no dependency array, hence no rerendering on every state change.
+- Access to the updated states: *useEvent* will always have access to the latest states due to [closures](https://dev.to/swastikyadav/understanding-callback-functions-and-closures-in-javascript-154l).
+
+Once *useEvent* is available to use, the solution will look something similar to the below code.
+
+```js
+import { useState, useEvent } from "react";
+
+export default function App() {
+  const [count, setCount] = useState(0);
+ 
+  const incrementCount = useEvent(() => {
+    setCount(count + 1);
+  });
+
+  return (
+    <div className="App">
+      <span>{count}</span>
+      <button onClick={incrementCount}>SUBSCRIBE</button>
+    </div>
+  );
+}
+```
+
+## Example Two
+```js
+import { useState, useEffect } from "react";
+
+export default function App() {
+  const [routeUrl, setRouteUrl] = useState("/home");
+  const [userName, setUserName] = useState("Swastik");
+
+  const logAnalytics = (routeUrl, userName) => {
+    console.log(`Route changed by ${userName} to ${routeUrl}`);
+  };
+
+  useEffect(() => {
+    logAnalytics(routeUrl, userName);
+  }, [logAnalytics, routeUrl, userName]);
+
+  return (
+    <div className="App">
+    </div>
+  );
+}
+```
+In the above example analytics is consoled whenever *routeUrl* or *userName* changes. But we don't want that, we only want analytics to be consoled when *routeUrl* changes not *userName*.
+
+Why would you log analytics when userName changes?
+
+useCallback again won't solve that problem because of dependency array. We need something that does not have dependency array and always have access to the updated states.
+
+Well, it seems that a new hook is about to join the list of essential React hooks.
+
+### Solution: useEvent to the rescue again.
+The solution will look similar to the below code once useEvent is out.
+
+```js
+import { useState, useEffect, useEvent } from "react";
+
+export default function App() {
+  const [routeUrl, setRouteUrl] = useState("/home");
+  const [userName, setUserName] = useState("Swastik");
+
+  const logAnalytics = useEvent((routeUrl) => {
+    console.log(`Route changed by ${userName} to ${routeUrl}`);
+  });
+
+  useEffect(() => {
+    logAnalytics(routeUrl);
+  }, [logAnalytics, routeUrl]);
+
+  return (
+    <div className="App">
+    </div>
+  );
+}
+```
+
+-----------------------------
+
+Hopefully you enjoyed this short post. If you are struggling to increase your income as a developer, check out my new course below.
+
+Thank You!
