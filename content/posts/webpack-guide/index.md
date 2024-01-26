@@ -33,14 +33,14 @@ npm init
 
 The above command will ask few questions, just accept all default configs. Now we have a package.json file in our project.
 
-#### Installing Dependencies
+### Installing Dependencies
 Run the following command in project directory. We will talk about each dependency later.
 
 ```bash
 npm install faker html-webpack-plugin webpack webpack-cli webpack-dev-server
 ```
 
-#### Adding entry HTML and JS files.
+### Adding entry HTML and JS files.
 
 ```git-bash
 cd ./public
@@ -111,10 +111,10 @@ module.exports = {
 }
 ```
 
-#### webpack-dev-server
+### webpack-dev-server
 WebpackDevServer takes main.js (output by webpack) and makes it available to the browser.
 
-#### html-webpack-plugin
+### html-webpack-plugin
 HtmlWebpackPlugin takes whatever file name webpack generates (main.js) and adds it as script in `/public/index.html`.
 
 Change the start script in `package.json`.
