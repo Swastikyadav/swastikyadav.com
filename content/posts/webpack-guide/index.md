@@ -1,5 +1,5 @@
 ---
-title: Webpack, The clear and concise explanation. 
+title: Webpack, The clear and concise explanation
 author: Swastik Yadav
 date: 2024-01-26
 hero: ./hero.png
