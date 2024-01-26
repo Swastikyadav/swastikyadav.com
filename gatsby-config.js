@@ -3,16 +3,16 @@ module.exports = {
     title: `Swastik Yadav || Full stack software engineer.`,
     name: `Swastik Yadav`,
     siteUrl: `https://swastikyadav.com`,
-    description: `Full-Stack web development blogs, courses, tutorials, and projects. Learn web development best practices the right way.`,
+    description: `Full-Stack web development blogs, tutorials, and projects. Learn web development best practices the right way.`,
     hero: {
-      heading: `Full-Stack web development blogs, tutorials, courses, and projects.`,
+      heading: `Full-Stack web development blogs, tutorials, and projects.`,
       maxWidth: 652,
     },
     social: [
-      {
-        name: `twitter`,
-        url: `https://twitter.com/swastikb380`,
-      },
+      // {
+      //   name: `twitter`,
+      //   url: `https://twitter.com/swastikb380`,
+      // },
       {
         name: `github`,
         url: `https://github.com/Swastikyadav`,

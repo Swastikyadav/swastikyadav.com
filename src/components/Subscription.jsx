@@ -7,7 +7,7 @@ function Subscription() {
     <div id="revue-embed">
       <h3>Developers, <span className="highlight">Double your income</span> without competing against <span className="highlight">thousands of resumes</span> by building your <span className="highlight">social presence</span>.</h3>
       <p>
-        Learn to bypass all the competition. Let the opportunities come to you instead of you mindlessly running behind it. This is how I went from 9LPA to 18LPA.
+        Learn to bypass all the competition. Let the opportunities come to you instead of you mindlessly running behind it. This is how you monetize your webDev skills.
       </p>
 
       {/* <form action="https://www.getrevue.co/profile/8020lessons/add_subscriber" method="post" id="revue-form" name="revue-form"  target="_blank"> */}
