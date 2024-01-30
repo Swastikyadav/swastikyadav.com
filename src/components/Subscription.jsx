@@ -13,7 +13,7 @@ function Subscription() {
       {/* <form action="https://www.getrevue.co/profile/8020lessons/add_subscriber" method="post" id="revue-form" name="revue-form"  target="_blank"> */}
       {/* <input className="revue-form-field" placeholder="Your @email.com" type="email" name="member[email]" id="member_email" required /> */}
 
-      <a href="#" target="_blank" rel="noopener noreferrer">
+      <a href="https://diaryofadev.ck.page/a4a719c8f3" target="_blank" rel="noopener noreferrer">
         <button className="revue-form-submit" id="member_submit">2x Income Now!</button>
       </a>
 
