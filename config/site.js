@@ -19,7 +19,7 @@ export const siteConfig = {
       name: "BlogFast",
       description:
         "A NextJs boilerplate for developers to start blogging in hours not weeks.",
-      url: "",
+      url: "https://github.com/Swastikyadav/BlogFast",
       isActive: true,
       logo: "/images/blogfast.png",
     },
