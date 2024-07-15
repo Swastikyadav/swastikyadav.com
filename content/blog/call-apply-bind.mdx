@@ -1,0 +1,83 @@
+---
+title: Understand call, apply, and bind functions in JavaScript like never before
+description: In this post, we'll take a detailed look at how call, apply, and bind work in JavaScript.
+date: 2024-05-30
+published: true
+---
+
+In this post, we'll take a detailed look at how call, apply, and bind work in JavaScript.
+
+JavaScript's call(), apply(), and bind() functions are often misunderstood. In this video, we'll clear up the confusion once and for all.
+
+We'll discuss the differences between the three, and when you would want to use each one. We'll also provide examples to help you understand how they work.
+
+By the end of this post, you'll have a deep understanding of how these functions work, and be able to use them in your own code.
+
+So, let's get started.
+
+Now, let's start for real.
+
+---
+
+Let's say we have an object with name and greet function.
+
+```js
+const obj = {
+  name: "Swastik",
+  greet(age) {
+    console.log(`Hello ${this.name}, age: ${age}`);
+  },
+};
+
+obj.greet(23); // console -> Hello Swastik, age: 23
+```
+
+Calling the greeet function consoles "Hello Swastik". The `**"this"**` keyword refers to the context of greet() function.
+
+In other words `**"this"**` keywords for greet() function refers to the object (obj) in which it was defined.
+
+Now, let's say you need to **change the context** of greet() function, means you need to change where the "this" keyword refers in greet() function from `obj` to `obj1`.
+
+Let's define obj1.
+
+```js
+const obj1 = {
+  name: "Yadav",
+};
+```
+
+What we want to achieve is that when we call greet() function it should console "Hello Yadav" instead of "Hello Swastik".
+
+This can be achieved with call(), apply(), and bind() method in JavaScript.
+
+## call()
+
+"call" method changes the context of a given function to the context that we specify. So here we are changing the context of greet from obj to obj1.
+
+```js
+obj.greet.call(obj1, 24); // console -> Hello Yadav, age: 24
+```
+
+First argument is the new context we want, and all comma separated arguments are for greet function.
+
+## apply()
+
+"apply" method is exactly similar to "call method", the only difference being that call takes argument of greet as comma separated and apply takes them as an array.
+
+```js
+obj.greet.apply(obj1, [24]); // console -> Hello Yadav, age: 24
+```
+
+## bind()
+
+"bind" is also exactly similar to call and apply, and here is the difference.
+
+- call and apply executes the fuction right away.
+- bind returns a new function binded with new "this" keyword, which can be called later.
+
+```js
+const bindYadav = obj.greet.bind(obj1, 25);
+bindYadav(); // console.log -> Hello Yadav, age: 25
+```
+
+That's it for this post. Thanks for reading.

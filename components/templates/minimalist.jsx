@@ -97,8 +97,10 @@ export function Minimalist() {
         <div>
           {sortedPosts.map(({ slug, date, title, description }) => (
             <p className="flex items-center justify-between py-2 my-2 text-base font-medium text-gray-500 border-b hover:border-gray-600">
-              <Link href={slug}>{title}</Link>
-              <time className="font-light" dateTime={date}>
+              <Link className="w-3/4" href={slug}>
+                {title}
+              </Link>
+              <time className="text-xs font-light" dateTime={date}>
                 {formatDate(date)}
               </time>
             </p>
