@@ -1,0 +1,56 @@
+---
+title: 🛑 STOP thinking about React lifecycle methods
+description: In this post let's talk about the paradigm shift from lifecycle methods to state synchronization and hooks in ReactJs.
+date: 2024-06-15
+published: true
+---
+
+In this post let's talk about the paradigm shift from lifecycle methods to state synchronization and hooks in ReactJs.
+
+When class components were a thing in ReactJs (Well it still is, but no one likes them anymore), we use to think a lot in terms of mouting, unmounting, and lifecycle methods.
+
+![lifecycle diagram](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/340r7t1rsjtvyqbgjwef.png)
+
+Whenever a class component mounts, the lifecycle methods are called in following sequence: constructor → render → DOM and refs update → componentDidMount
+
+But then came React Hooks, and we started to think in terms of dependency array.
+
+And, often times we ask:
+
+> What is the hooks equivalent to [some lifecycle method]?
+
+The quick answer is that hooks are a paradigm shift from thinking in terms of "lifecycles" to thinking in terms of "state and synchronization with DOM".
+
+![lifecycles!=hoooks](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/j2t7c1ymoiavzdjci11m.png)
+
+Trying to take the old paradigm and apply it to hooks just doesn't work out very well and can hold you back.
+
+```js
+useEffect(fn); // fn invoked on all updates
+
+useEffect(fn, []); // invoked on mount
+
+useEffect(fn, [a, b, c]); // invoked if any of the members of the array are updated
+```
+
+The above snippet is not the right way to think about React hook.
+
+Lifecycles are gone, but we still think of useEffect with empty dep array as componentDidMount, and that’s not the right way to think about React Hooks.
+
+Now I want to present to you the right way to think about react hooks.
+
+## State Synchronization
+
+See, the question is not "when does this effect run" the question is "which state does this effect synchronizes with"
+
+```js
+useEffect(fn); // useEffect with no dep array, sync with all state
+
+useEffect(fn, []); // useEffect with empty dep array, sync with no state
+
+useEffect(fn, [stateA, stateB]); // useEffect with stateA and stateB in dep array sync with stateA and stateB.
+```
+
+And that’s how you should think about React Hooks.
+
+Thanks for reading!

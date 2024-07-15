@@ -1,0 +1,57 @@
+---
+title: How CSS is parsed on the browser
+description: How CSS is parsed on the browser?, How CSS render the document style?, How layout of the page is decided?
+date: 2023-08-28
+published: true
+---
+
+We all have used CSS to build beautiful and responsive webpages. But do you know:
+
+- How browser parses the CSS?
+- How CSS renders the style?
+- How layout of the page is decided?
+
+In this post I will try to answer the above questions in a simple manner.
+
+## CSS is parsed on the browser in 3 steps.
+
+1. Resolve conflicting CSS declarations.
+2. Process final computed CSS values.
+3. Visual Formatting Model.
+
+Here is a complete flow of these 3 steps.
+
+![how css is parsed on the v=browser](https://res.cloudinary.com/practicaldev/image/fetch/s--dSUEsKvg--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://pbs.twimg.com/media/E2PI8oKWYAAk44B%3Fformat%3Dpng%26name%3Dsmall)
+
+Let's understand each step.
+
+## 1 Resolve Conflicting CSS declarations.
+
+- Different stylesheets are combined together.
+- Resolving conflicts when more than one rule is applied to a certain element.
+
+For ex: Which color to apply when defined twice for the same element.
+
+Here Cascade & Specificity is at play.
+
+![css-specificity](https://res.cloudinary.com/practicaldev/image/fetch/s--ztQoXIZm--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://pbs.twimg.com/media/E2PLPGFXsAoeTT7%3Fformat%3Djpg%26name%3Dsmall)
+
+## 2 Processing Values
+
+All relative units (%, em, rem, vh, vw) are finally converted to absolute unit, pixels (px).
+
+At this phase, all CSS values become computed values not the specified values.
+
+![CSS relative value conversion to px](https://res.cloudinary.com/practicaldev/image/fetch/s--gt2l5kRw--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://pbs.twimg.com/media/E2PRkJzXsAUzHnR%3Fformat%3Djpg%26name%3Dmedium)
+
+## 3 The visual formatting model.
+
+This is the algorithm that calculates boxes & determines the layout of these boxes, for each element in the render tree, to determine the page's final layout.
+
+![visual-formatting-model-css](https://res.cloudinary.com/practicaldev/image/fetch/s--A7wqQoXP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://pbs.twimg.com/media/E2PTmXoWEA0n-5k%3Fformat%3Dpng%26name%3D900x900)
+
+---
+
+So, that’s how CSS is parsed on the browser. If you enjoyed this post then consider joining the newsletter for more amazing stuff.
+
+Thank You!
