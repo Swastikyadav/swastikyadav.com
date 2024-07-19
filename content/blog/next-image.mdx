@@ -1,0 +1,60 @@
+---
+title: How 'next/image' Handles Layout Shift
+description: Learn how 'next/image' behind the scenes handle layout shifts and other image optimizations.
+date: 2024-07-19
+published: true
+---
+
+Hello Devs!
+
+In a NextJs app whenever we need to add images, we can very easily use the native HTML img tag. But we will also be missing on a lot of
+optimizations around images provided by NextJs. And that's what we gonna discuss in this post.
+
+NextJs provides a super special Image component optimized specifically for loading up images in couple of different scenarios.
+
+Import it from **'next/image'** to use it in your component.
+
+```js
+import Image from "next/image";
+```
+
+The most prominent thing this Image component does in production is that it detects the different screen sizes and requests a new copy (suitable to that particular screen) of original image.
+
+For example: Our original image is 6000x4000 but user is on a 800px wide screen. Next server will take the original image and resize it down to somethign suitable to the 800px wide screen.
+
+How cool is that!
+
+This resizing process happens only once for that first time. After that the resized image is cached and served to all screens of similar size.
+
+## Layout Shifting
+
+Imagine a web page with image and text side by side. When page loads the text shows up first and image loads later on, moving the text to the side.
+
+This is called Layout Shift and can be very frustrating for users.
+
+The solution to this is that somehow we need to keep a placeholder for image even when the image is still loading.
+
+And for that we need to know the exact size of the image beforehand.
+
+This is something already handled by **'next/image'** component. Let's see how NextJs Image component does that.
+
+There are 3 ways 'next/image' figures out the exact size of an image for the placeholder.
+
+- If using local image, dimensions are taken from the imported image. If you console an imported local image you will see it does not only have image path but more useful info like width and height also.
+- Assign a width and height to the image component.
+- Assign a fill prop, the image will expand to fill up the parent element.
+
+Let's see an example of using the Next Image component.
+
+```js
+<Image
+  src={importedImage} // Path of the image local or remote.
+  width="100" // If you strictly need to define image width.
+  height="100" // If you strictly need to define image height.
+  fill // If image should expand to fill parent element. Useful for hero background images.
+/>
+```
+
+That's it for this one. Thanks for reading.
+
+See you in some other post.
