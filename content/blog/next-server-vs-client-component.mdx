@@ -1,0 +1,102 @@
+---
+title: NextJs - Server component vs Client component
+description: Learn what's the difference b/w a server and a client component and how to deal with each one.
+date: 2024-07-21
+published: true
+---
+
+Hello Devs!
+
+When we work with NextJs, some of our code is running on the server, some is running on the client.
+
+So the first natural question that comes to mind is "What is the difference?". So that's what we are going to discuss today.
+
+- Client Component: Essentially the same React component that we are already familiar with.
+- Server Component: Bends the rules of traditional component a little bit. Provides some extra features that we will looak at later in this post.
+
+Another question that may arise is "Which one to use when?".
+
+Well, as a rule of thumb in NextJs we should generally go for **server component first**, then if you feel the need of hooks or event handlers, move to **client component later**.
+
+## Server Components
+
+Let's discuss some features and limitations of server components.
+
+### Features
+
+- By default in NextJs all components are server components.
+- Tons of UX, performance, etc benefits by using them.
+- Can use **async/await**! Don't need useState or useEffect for data fetching.
+
+### Limitations
+
+- Can not use any kind of hook.
+- Can not assign any event handlers like onClick, onBlur, and etc.
+
+And because server components are rendered on the server, all the JavaScript inside it works flawlessly even in systems where Js can't run or is disabled.
+
+And this provides a huge performance boost as we are not relying on users system to run JavaScript.
+
+## Client Component
+
+The same old React component here are some features and limitations.
+
+### Features
+
+- Created by addign 'use client' at the very top of the file.
+- Have all the usual rules of components. Can use Hooks, Event handlers, etc.
+
+### Limitations
+
+- Can not directly show a server component.
+
+So, I repeat again use a client component if you need to use hooks or event handlers.
+
+## Does Client component actually renders on the client? Or we have been tricked?
+
+The client component for the very first time render on the server instead of client.
+
+Wait What?... But it is called **"Client Component"**. Right?
+
+Ya, although it is called client component, but it does not render on the client 100% of the time.
+
+For the very first time when user requests a page, the client component renders on the server.
+
+This is really very important to understand because you'll be able to catch and avoid many nasty bugs if you understand this distinction beforehand.
+
+## Server Actions
+
+Alright, we understood that server components can not use hooks or event handlers. Then the question is "How do we submit a form in server component?".
+
+Well, the answer is just like how we submit a form in plain old vanilla HTML.
+
+Let's see an example.
+
+```js
+// An example server component.
+
+export default function PostCreatePage() {
+  async function createPost(formData: FormData) {
+    "use server";
+
+    // validate + sanitize user input.
+    // create a new post in database.
+  }
+
+  return (
+    <form onSubmit={createPost}>
+      <input type="text" placeholder="topic" />
+      <textArea type="text" placeholder="content" />
+      <button type="submit">Create Post</button>
+    </form>
+  );
+}
+```
+
+The server actions stays and executes on the server.
+
+The `formData` argument in createPost server action is the default formData we receive when submiting a form.
+
+---
+
+That is all for this post. Thanks for reading this far.
