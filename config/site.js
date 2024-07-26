@@ -31,5 +31,12 @@ export const siteConfig = {
       isActive: false,
       logo: "/images/twembed.png",
     },
+    {
+      name: "YouFolio",
+      description: "A single page portfolio builder web app for developers.",
+      url: "https://getyoufolio.vercel.app/",
+      isActive: true,
+      logo: "/images/folio.png",
+    },
   ],
 };
