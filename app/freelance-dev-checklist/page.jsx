@@ -30,11 +30,11 @@ export default function FreelanceChecklist({ searchParams: { success } }) {
 
       <div className="grid col-span-1 gap-2 p-2 my-8 border rounded">
         <h2 className="text-xl">
-          Subscribe to watch me follow this checklist and{" "}
+          This checklist helped me{" "}
           <span className="font-semibold text-purple-600">
             "Close a ₹8k freelance web-dev client in 24 hours"
           </span>{" "}
-          .
+          . Subscribe to watch the video.
         </h2>
         <form
           action="https://app.convertkit.com/forms/6998755/subscriptions"
@@ -57,7 +57,7 @@ export default function FreelanceChecklist({ searchParams: { success } }) {
             placeholder="Email"
             required
           />
-          <Button type="submit">Subscribe</Button>
+          <Button type="submit">Watch Now!</Button>
         </form>
 
         {success && (
