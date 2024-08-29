@@ -1,3 +1,5 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 export default function MasterClassOptin({ searchParams: { success } }) {
   return (
     <div className="absolute w-full bg-[#1e1e1e]">
@@ -50,6 +52,8 @@ export default function MasterClassOptin({ searchParams: { success } }) {
           folder if can't find the email.
         </small>
       )}
+
+      <GoogleAnalytics gaId="G-FM9H9LFB2Q" />
     </div>
   );
 }
