@@ -6,7 +6,7 @@ export default function MasterClassOptin({ searchParams: { success } }) {
       <div className="bg-[#1e1e1e] font-bold mt-24 mb-20 px-6 text-center">
         <div className="grid max-w-3xl grid-cols-1 gap-6 mx-auto">
           <p className="text-[#e4c584] text-sm md:text-base">
-            FREELANCING MASTERCLASS FOR DEVELOPERS
+            1 HOUR FREELANCING MASTERCLASS FOR DEVELOPERS
           </p>
           <h1 className="text-2xl text-white md:text-4xl">
             Watch, How I closed ₹8k Freelance web development client in 24
