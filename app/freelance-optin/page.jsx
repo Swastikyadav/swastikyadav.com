@@ -45,13 +45,14 @@ export default function MasterClassOptin({ searchParams: { success } }) {
         >
           WATCH NOW
         </button>
+
+        {success && (
+          <small className="self-start font-bold text-green-900">
+            Success! Now check your email for the video. Also check your spam
+            folder if can't find the email.
+          </small>
+        )}
       </form>
-      {success && (
-        <small className="font-semibold text-green-600">
-          Success! Now check your email for the video. Also check your spam
-          folder if can't find the email.
-        </small>
-      )}
 
       <GoogleAnalytics gaId="G-FM9H9LFB2Q" />
     </div>
