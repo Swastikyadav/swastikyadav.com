@@ -1,4 +1,4 @@
-export default function MasterClassOptin() {
+export default function MasterClassOptin({ searchParams: { success } }) {
   return (
     <div className="absolute w-full bg-[#1e1e1e]">
       <div className="bg-[#1e1e1e] font-bold mt-24 mb-20 px-6 text-center">
@@ -44,6 +44,12 @@ export default function MasterClassOptin() {
           WATCH NOW
         </button>
       </form>
+      {success && (
+        <small className="font-semibold text-green-600">
+          Success! Now check your email for the video. Also check your spam
+          folder if can't find the email.
+        </small>
+      )}
     </div>
   );
 }
