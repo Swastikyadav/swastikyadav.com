@@ -2,13 +2,16 @@
 
 import { mentalModels } from "@/config/mentalModels";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+
+import { MentalModelDrawer } from "@/components/mental-model-drawer";
+import { MentalModelSubscriptionForm } from "@/components/mental-model-subscription";
 
 export default function JsMentalModel({ searchParams: { success } }) {
   return (
@@ -42,46 +45,12 @@ export default function JsMentalModel({ searchParams: { success } }) {
           </AccordionItem>
         </Accordion>
 
-        <div className="my-8">
-          <form
-            action="https://app.convertkit.com/forms/7041351/subscriptions"
-            method="post"
-          >
-            {/* <input type="text" name="first_name" /> */}
-            <input
-              type="email"
-              name="email_address"
-              id="email_address"
-              placeholder="3 new Mental Models every Tuesday."
-              className="w-full p-2 mb-2 border rounded border-slate-400"
-              required
-            />
-            <Button type="submit" className="w-full bg-[#597cff]">
-              {`Yes! I'm In :)`}
-            </Button>
-            {success && (
-              <small className="font-semibold text-green-600">
-                Success! Now check your email to confirm the subscription. Also
-                check your spam folder if can't find the email.
-              </small>
-            )}
-          </form>
-        </div>
+        <MentalModelSubscriptionForm success={success} />
       </aside>
 
       <section className="grid w-full grid-cols-1 gap-12 p-16 md:grid-cols-2 lg:grid-cols-3">
         {mentalModels.reverse().map((model) => {
-          return (
-            <div>
-              <Image
-                src={`${model.gif}`}
-                width={600}
-                height={280}
-                className="border border-black border-solid rounded shadow-md cursor-pointer hover:scale-105"
-              />
-              <p className="text-lg font-semibold">{model.title}</p>
-            </div>
-          );
+          return <MentalModelDrawer model={model} />;
         })}
       </section>
     </div>
