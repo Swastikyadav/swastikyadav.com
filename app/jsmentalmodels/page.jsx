@@ -23,15 +23,23 @@ import { MentalModelDrawer } from "@/components/mental-model-drawer";
 import { MentalModelSubscriptionForm } from "@/components/mental-model-subscription";
 
 export default function JsMentalModel({ searchParams: { success } }) {
-  const [isSubPopupOpen, setIsSubPopupOpen] = useState(true);
+  const [isSubPopupOpen, setIsSubPopupOpen] = useState(false);
 
   useEffect(() => {
+    if (success) {
+      localStorage.setItem("success", "true");
+    }
+
+    if (localStorage.getItem("success")) return;
+
+    const handleMouseLeave = (event) => {
+      if (event.clientY <= 0) {
+        setIsSubPopupOpen(true);
+      }
+    };
+
     if (window.innerWidth >= 1024) {
-      document.addEventListener("mouseout", (e) => {
-        if (e.toElement === null && e.relatedTarget === null) {
-          setIsSubPopupOpen(true);
-        }
-      });
+      document.addEventListener("mouseleave", handleMouseLeave);
     } else {
       setTimeout(() => {
         setIsSubPopupOpen(true);
