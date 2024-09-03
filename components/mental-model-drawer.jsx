@@ -26,7 +26,7 @@ export function MentalModelDrawer({ model }) {
           />
           <p className="text-lg font-semibold">{model.title}</p>
         </DrawerTrigger>
-        <DrawerContent className="h-[90%] w-[95%] m-auto">
+        <DrawerContent className="h-[90%] w-[95%] m-auto overflow-y-scroll">
           <DrawerHeader className="m-auto">
             <DrawerTitle>{model.title}</DrawerTitle>
             <DrawerDescription>
@@ -41,13 +41,12 @@ export function MentalModelDrawer({ model }) {
                 dangerouslySetInnerHTML={{ __html: model.description }}
                 className="my-8"
               ></p>
+
+              <div className="w-full m-auto md:w-96">
+                <MentalModelSubscriptionForm />
+              </div>
             </DrawerDescription>
           </DrawerHeader>
-          <DrawerFooter>
-            <div className="w-full m-auto md:w-96">
-              <MentalModelSubscriptionForm />
-            </div>
-          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </div>
