@@ -7,6 +7,9 @@ export function MentalModelSubscriptionForm({ success }) {
         action="https://app.convertkit.com/forms/7041351/subscriptions"
         method="post"
       >
+        <p className="text-xs font-semibold text-slate-600">
+          Join now to get a FREE JavaScript visual ebook.
+        </p>
         <input
           type="email"
           name="email_address"
