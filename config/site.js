@@ -7,8 +7,9 @@ export const siteConfig = {
   author: "Swastik Yadav",
   authorProfileImg:
     "https://media.dev.to/cdn-cgi/image/width=320,height=320,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F624038%2F06e37841-8bee-420a-a76e-4f05684aaf1c.jpg",
-  about:
-    "Software Engineer (3+ Years Exp) || JavaScript, React, NextJs || Writes about JavaScript & life. Building side projects used by real people. || My blogs on Dev.To have been read by 200k+ readers so far.",
+  about: `Software Engineer (${
+    new Date().getFullYear() - 2021
+  } Years Exp) || JavaScript, React, NextJs || Writes about JavaScript & life. Building side projects used by real people. || My blogs on Dev.To have been read by 200k+ readers so far.`,
   links: [
     { name: "github", url: "https://github.com/swastikyadav" },
     { name: "linkedin", url: "https://linkedin.com/in/swastikyadav" },
@@ -33,7 +34,8 @@ export const siteConfig = {
     },
     {
       name: "YouFolio",
-      description: "A single page sharable portfolio builder web app for developers.",
+      description:
+        "A single page sharable portfolio builder web app for developers.",
       url: "https://getyoufolio.vercel.app/",
       isActive: true,
       logo: "/images/folio.png",
