@@ -1,0 +1,242 @@
+---
+title: 🔴 Avoid useEffect in your React app
+description: Write pure components and avoid useEffect. This post will explain why.
+date: 2025-01-28
+published: true
+---
+
+Most React developers rely on `useEffect` for almost everything, especially beginners. I was the same untill I had a heated argument over it and read the official React docs.
+
+I literally use to think in `useEffect` only. For me it was like:
+
+> Many problems (data fetching, focusing an input, state updates when something changes), one solution (useEffect).
+
+Now, I'm out of the `useEffect` way of thinking. And my goal with post is to help you do the same.
+
+But first we must understand pure components.
+
+## Pure components
+
+A component must be pure, meaning:
+
+- **Same inputs, Same output**. Given the same inputs, a component should always return the same JSX.
+- A component should not mutate/change any variables/inputs that existed before its rendering.
+
+So, keep mutations local and rendering function pure.
+
+### Example:
+
+```js
+export default function DayNight({ time }) {
+  let hours = time.getHours();
+  if (hours >= 0 && hours <= 6) {
+    document.getElementById("time").className = "night";
+  } else {
+    document.getElementById("time").className = "day";
+  }
+
+  return <h1 id="time">{time.toLocaleTimeString()}</h1>;
+}
+```
+
+The above component is not pure because it performs a side effect (modifying the DOM).
+
+### Solution:
+
+This can be made pure by calculating the className and including in the render output.
+
+```js
+export default function DayNight({ time }) {
+  let hours = time.getHours();
+  let className;
+  if (hours >= 0 && hours <= 6) {
+    className = "night";
+  } else {
+    className = "day";
+  }
+
+  return <h1 className={className}>{time.toLocaleTimeString()}</h1>;
+}
+```
+
+The side effect (modifying the DOM) was not necessary at all. You only need to return JSX.
+
+And no, you don't need a state to hold className value and a useEffect to change it.
+
+## Avoid Effects
+
+### What are effects?
+
+Effects are a way to step outside of React and sync our component with external systems without making it impure.
+
+Avoiding unnecessary Effects will make our code easier to follow, faster to run, and less error-prone.
+
+If there is no external system involved, we shouldn't need an Effect.
+
+Let's see some examples:
+
+### Bad examples:
+
+```js
+function Form() {
+  const [firstName, setFirstName] = useState("Swastik");
+  const [lastName, setLastName] = useState("Yadav");
+
+  // 🔴 Avoid: redundant state and unnecessary effect.
+  const [fullName, setFullName] = useState("");
+
+  useEffect(() => {
+    setFullName(firstName + " " + lastName);
+  }, [firstName, lastName]);
+
+  // ...
+}
+```
+
+```js
+function TodoList({ todos, filter }) {
+  const [newTodo, setNewTodo] = useState("");
+
+  // 🔴 Avoid: redundant and unnecessary effect.
+  const [visibleTodos, setVisibleTodos] = useState([]);
+
+  useEffect(() => {
+    setVisibleTodos(filterTodosFun(todos, filter));
+  }, [todos, filter]);
+}
+```
+
+These are more complicated than necessary. It does an entire render with stale value for `fullName`, then immediately re-renders with the updated value.
+
+### Good Examples:
+
+```js
+function Form() {
+  const [firstName, setFirstName] = useState("Swastik");
+  const [lastName, setLastName] = useState("Yadav");
+
+  // ✅ Good: calculated during rendering
+  const fullName = firstName + " " + lastName;
+
+  // ...
+}
+```
+
+```js
+function TodoList({ todos, filter }) {
+  const [newTodo, setNewTodo] = useState("");
+
+  // ✅ This is fine
+  const visibleTodos = useMemo(() => {
+    // ✅ Does not re-run unless todos or filter change
+    return filterTodosFun(todos, filter);
+  }, [todos, filter]);
+}
+```
+
+When something can be calculated from the existing props or state, don't put it in state. Instead, calculate it during rendering.
+
+- Avoid extra "cascading" updates.
+- Avoid bugs created by different state variables getting out of sync.
+
+### Let's see more examples:
+
+This `ProfilePage` component receives a userId prop. The page contains a comment input.
+
+When we navigate from one profile to another, the comment state should reset.
+
+```js
+export default function ProfilePage({ userId }) {
+  const [comment, setComment] = useState("");
+
+  // 🔴 Avoid: Resetting state on prop change in an effect.
+  useEffect(() => {
+    setComment("");
+  }, [userId]);
+
+  // ...
+}
+```
+
+This is inefficient because profilePage and its children will first render with the stale value, and then render again.
+
+Instead tell React that each user's profile is conceptually a different profile by giving it an explicit key. Split component in two and pass a key attribute from outer component to inner one.
+
+```js
+  export default function ProfilePage({ userId }) {
+    return (
+      <Profile userId={userId} key={userId} />;
+    );
+  };
+
+  function Profile({ userId }) {
+    // ✅ This and any other state below will reset on key change automatically
+    const [comment, setComment] = useState("");
+
+    // ...
+  };
+```
+
+By passing `userId` as `key` to the Profile component, React treats two profile component with different `userId` as two different components that should not share any state.
+
+### One more example:
+
+Reset the `selection` to `null` whenever the `items` prop changes.
+
+🔴 Wrong:
+
+```js
+function List({ items }) {
+  const [isReverse, setIsReverse] = useState(false);
+  const [selection, setSelection] = useState(null);
+
+  // 🔴 Avoid: Adjusting state on prop change in a effect
+  useEffect(() => {
+    setSelection(null);
+  }, [items]);
+
+  // ...
+}
+```
+
+- Every time items change.
+- List and childrens re-render with stale state.
+- Then again re-render because of useEffect.
+- Restarting the whole process.
+
+Adjusting state based on porps or other state makes our data flow more difficult to understand and debug.
+
+Always check if we can:
+
+- Reset all state with key.
+- Calculate everything during rendering.
+
+✅ Best
+
+```js
+function List({ items }) {
+  const [isReverse, setIsReverse] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+
+  // ✅ Best: Calculate everything during rendering
+  const selection = items.find((item) => item.id === selectedId) ?? null;
+
+  // ...
+}
+```
+
+## Takeaways
+
+Now, if there is only one thing you can take away from this post. It shoudl be the following.
+
+- If you can calculate something during render, you don't need and effect.
+- To reset the state of an entire component tree, pass a differetn `key` to it.
+- Code that runs because a component was displayed should be in effects, the rest should be in events.
+
+Here is the flow in which you should think about implementation.
+
+> Rendering → Events → Split Comp in two (use `key`) → Effects (last resort).
+
+---
+
+→ Swastik Yadav Software Engineer
