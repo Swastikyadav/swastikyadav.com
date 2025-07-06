@@ -6,7 +6,7 @@ export const siteConfig = {
   description: "My portfolio of small bets.",
   author: "Swastik Yadav",
   authorProfileImg:
-    "https://media.dev.to/cdn-cgi/image/width=320,height=320,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F624038%2F06e37841-8bee-420a-a76e-4f05684aaf1c.jpg",
+    "https://avatars.githubusercontent.com/u/44374494",
   about: `Software Engineer (${
     new Date().getFullYear() - 2021
   } Years Exp) || JavaScript, React, NextJs || Writes about JavaScript & life. Building side projects used by real people. || My blogs on Dev.To have been read by 200k+ readers so far.`,
@@ -17,6 +17,30 @@ export const siteConfig = {
   projects: [
     // Add more project objects here...
     {
+      name: "AltForms",
+      description:
+        "FormBuilder Prototype - Build and share your public form page.",
+      url: "https://github.com/Swastikyadav/AltForms",
+      isActive: true,
+      logo: "/images/altforms.png",
+    },
+    {
+      name: "ReTone",
+      description:
+        "ReTone - AI Email Tone Converter. Raw email draft to emails that converts.",
+      url: "https://github.com/Swastikyadav/retone",
+      isActive: true,
+      logo: "/images/retone.png",
+    },
+    {
+      name: "Concisely AI",
+      description:
+        "Summarize your PDFs in seconds Unlock new insights with AI.",
+      url: "https://github.com/Swastikyadav/Concisely-AI",
+      isActive: true,
+      logo: "/images/concisely.png",
+    },
+    {
       name: "BlogFast",
       description:
         "A NextJs boilerplate for developers to start blogging in hours not weeks.",
@@ -25,20 +49,20 @@ export const siteConfig = {
       logo: "/images/blogfast.png",
     },
     {
-      name: "TwEmbed",
-      description:
-        "Embed your twitter profile on any website with just copy & paste script.",
-      url: "https://twembed.netlify.app/",
-      isActive: false,
-      logo: "/images/twembed.png",
-    },
-    {
       name: "YouFolio",
       description:
         "A single page sharable portfolio builder web app for developers.",
       url: "https://getyoufolio.vercel.app/",
       isActive: true,
       logo: "/images/folio.png",
+    },
+    {
+      name: "TwEmbed",
+      description:
+        "Embed your twitter profile on any website with just copy & paste script.",
+      url: "https://twembed.netlify.app/",
+      isActive: false,
+      logo: "/images/twembed.png",
     },
   ],
 };

@@ -4,7 +4,7 @@ import { build } from "velite";
 export default {
   // othor next config here...
   images: {
-    remotePatterns: [{ hostname: "media.dev.to" }],
+    remotePatterns: [{ hostname: "avatars.githubusercontent.com" }],
   },
   webpack: (config) => {
     config.plugins.push(new VeliteWebpackPlugin());
