@@ -17,6 +17,13 @@ export const siteConfig = {
   projects: [
     // Add more project objects here...
     {
+      name: "Catalyst UI",
+      description: "React components library for faster product prototyping.",
+      url: "https://catalystui.vercel.app",
+      isActive: true,
+      logo: "/images/catalystui-logo.png",
+    },
+    {
       name: "AltForms",
       description:
         "FormBuilder Prototype - Build and share your public form page.",
