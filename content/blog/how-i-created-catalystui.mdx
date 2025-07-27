@@ -1,0 +1,131 @@
+---
+title: How & why I created a component library.
+description: Breakdown of my React component library for faster prototyping.
+date: 2025-07-27
+published: true
+---
+
+There is nothing more satisfying than building great products that entice your users.
+
+![catalystui-dashboard](https://catalystui.vercel.app/images/sot.png)
+
+But building a great product requires more than just coding or designing and that's what I'm learning nowadays.
+
+I am one of those people who believe in building great products at great speed.
+
+Everytime I build a product, I felt overwhelmed by all the UI/UX options reagarding layout, spacing, typography, and color.
+
+Hence I created a minimal component library for myself which follows a specific set of rules to avoid being overwhelmed with all the options.
+
+Introducing: **Catalyst UI** - _A React comomponents library for faster product prototyping_.
+
+Read the design system here: [The Design System](https://catalystui.vercel.app/documentation/design-system)
+
+Every CatalystUI component, block, and template follows this design system.
+
+CatalystUI doesn't force you to follow this design system strictly. You can break the rules if you've a good reason to do so with simple TailwindCSS utility classes.
+
+This is buit with React, TailwindCSS, and RadixUI.
+
+RadixUI is the core building block of this design system. Unstyled, Accessible, and Open source React primitives.
+
+Let's breakdown one simple component from CatalystUI.
+
+## Avatar component breakdown
+
+RadixUI Avatar comes in three parts:
+
+- Avatar.Root: The root element
+- Avatar.Image: The element which takes image url
+- Avatar.Fallback: The element which render name initials if image url is not given or can't be fetched
+
+Here is the basic usage.
+
+```tsx
+<Avatar.Root>
+    <Avatar.Image src={imageUrl} />
+    <Avatar.Fallback>SW<Avatar.Fallback />
+<Avatar.Root>
+```
+
+This renders a completely unstyled Avatar, one which doesn't even look like an avatar. So that we can style it however we want. And that's not a bug but a feature of RadixUI Primitives.
+
+We'll create three different components for each part of avatar.
+
+- Use children props to render `Avatar.Image` and `Avatar.Fallback` into `Avatar.Root`.
+- Style each part with TailwindCSS.
+
+```tsx
+const AvatarRoot = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
+>(({ className, children, ...props }, forwardedRef) => {
+  return (
+    <AvatarPrimitive.Root
+      ref={forwardedRef}
+      className={cx(className)}
+      {...props}
+    >
+      {children}
+    </AvatarPrimitive.Root>
+  );
+});
+
+const AvatarImage = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Image>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image> & {
+    imgUrl: string;
+  }
+>(({ imgUrl, className, ...props }, forwardedRef) => {
+  return (
+    <AvatarPrimitive.Image
+      ref={forwardedRef}
+      className={cx(
+        // base
+        "w-[26px] h-[26px] rounded-full cursor-pointer",
+        // className prop
+        className
+      )}
+      src={imgUrl}
+      alt="Colm Tuite"
+      {...props}
+    />
+  );
+});
+
+const AvatarFallback = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Image>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
+>(({ className, children, ...props }, forwardedRef) => {
+  return (
+    <AvatarPrimitive.Fallback
+      ref={forwardedRef}
+      className={cx(
+        // base
+        "cursor-pointer border border-gray-200 rounded-full p-1",
+        // className prop
+        className
+      )}
+      delayMs={600}
+      {...props}
+    >
+      {children}
+    </AvatarPrimitive.Fallback>
+  );
+});
+```
+
+Now, our Avatar component is ready to be used. Here is the usage.
+
+```tsx
+<AvatarRoot>
+  <AvatarImage imgUrl="https://avatars.githubusercontent.com/u/44374494" />
+  <AvatarFallback>SW</AvatarFallback>
+</AvatarRoot>
+```
+
+Similarly other components are also built with some API differences. Radix doesn't have primitives for everything so for other things we can use Slot utility from Radix to get its accessibility benefits into our custom primitives.
+
+---
+
+That's it for this one. See you in the next post.
