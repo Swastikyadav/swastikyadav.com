@@ -9,15 +9,15 @@ There is nothing more satisfying than building great products that entice your u
 
 ![catalystui-dashboard](https://catalystui.vercel.app/images/sot.png)
 
-But building a great product requires more than just coding or designing and that's what I'm learning nowadays.
+However, building a great product requires more than just coding or designing, and that's what I'm learning these days.
 
 I am one of those people who believe in building great products at great speed.
 
-Everytime I build a product, I felt overwhelmed by all the UI/UX options reagarding layout, spacing, typography, and color.
+Every time I build a product, I feel overwhelmed by the numerous UI/UX options available for layout, spacing, typography, and color.
 
-Hence I created a minimal component library for myself which follows a specific set of rules to avoid being overwhelmed with all the options.
+Hence, I created a minimal component library for myself, which follows a specific set of rules to avoid being overwhelmed.
 
-Introducing: **Catalyst UI** - _A React comomponents library for faster product prototyping_.
+Introducing: [**Catalyst UI**](https://catalystui.vercel.app) - _A React components library for faster product prototyping_.
 
 Read the design system here: [The Design System](https://catalystui.vercel.app/documentation/design-system)
 
@@ -25,32 +25,32 @@ Every CatalystUI component, block, and template follows this design system.
 
 CatalystUI doesn't force you to follow this design system strictly. You can break the rules if you've a good reason to do so with simple TailwindCSS utility classes.
 
-This is buit with React, TailwindCSS, and RadixUI.
+This is built with React, TailwindCSS, and RadixUI.
 
-RadixUI is the core building block of this design system. Unstyled, Accessible, and Open source React primitives.
+RadixUI is the core building block of this design system. Unstyled, Accessible, and Open-source React primitives.
 
-Let's breakdown one simple component from CatalystUI.
+Let's break down one simple component from CatalystUI.
 
 ## Avatar component breakdown
 
 RadixUI Avatar comes in three parts:
 
 - Avatar.Root: The root element
-- Avatar.Image: The element which takes image url
-- Avatar.Fallback: The element which render name initials if image url is not given or can't be fetched
+- Avatar.Image: The element that takes the image URL
+- Avatar.Fallback: The element which renders name initials if the image URL is not given or can't be fetched
 
 Here is the basic usage.
 
 ```tsx
 <Avatar.Root>
-    <Avatar.Image src={imageUrl} />
-    <Avatar.Fallback>SW<Avatar.Fallback />
+  <Avatar.Image src={imageUrl} />
+  <Avatar.Fallback>SW<Avatar.Fallback />
 <Avatar.Root>
 ```
 
-This renders a completely unstyled Avatar, one which doesn't even look like an avatar. So that we can style it however we want. And that's not a bug but a feature of RadixUI Primitives.
+This renders a completely unstyled Avatar, one that doesn't even look like an avatar. So that we can style it however we want. And that's not a bug but a feature of RadixUI Primitives.
 
-We'll create three different components for each part of avatar.
+We'll create three different components for each part of the avatar.
 
 - Use children props to render `Avatar.Image` and `Avatar.Fallback` into `Avatar.Root`.
 - Style each part with TailwindCSS.
@@ -124,8 +124,8 @@ Now, our Avatar component is ready to be used. Here is the usage.
 </AvatarRoot>
 ```
 
-Similarly other components are also built with some API differences. Radix doesn't have primitives for everything so for other things we can use Slot utility from Radix to get its accessibility benefits into our custom primitives.
+Similarly, other components are also built with some API differences. Radix doesn't have primitives for everything, so for other things, we can use the Slot utility from Radix to get its accessibility benefits into our custom primitives.
 
 ---
 
-That's it for this one. See you in the next post.
+Show your support by giving CatalystUI a star on GitHub: https://github.com/Swastikyadav/CatalystUI
