@@ -5,8 +5,7 @@ export const siteConfig = {
   url: "https://swastikyadav.com/",
   description: "My portfolio of small bets.",
   author: "Swastik Yadav",
-  authorProfileImg:
-    "https://avatars.githubusercontent.com/u/44374494",
+  authorProfileImg: "https://avatars.githubusercontent.com/u/44374494",
   about: `Software Engineer (${
     new Date().getFullYear() - 2021
   } Years Exp) || JavaScript, React, NextJs || Writes about JavaScript & life. Building side projects used by real people. || My blogs on Dev.To have been read by 200k+ readers so far.`,
@@ -62,6 +61,14 @@ export const siteConfig = {
       url: "https://getyoufolio.vercel.app/",
       isActive: true,
       logo: "/images/folio.png",
+    },
+    {
+      name: "8020Lessons",
+      description:
+        "A youtube channel to learn 20% programming skills that gets you 80% results.",
+      url: "https://www.youtube.com/@8020Lessons/videos",
+      isActive: false,
+      logo: "/images/8020lessons.jpg",
     },
     {
       name: "TwEmbed",
