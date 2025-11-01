@@ -23,12 +23,11 @@ export const siteConfig = {
       logo: "/images/catalystui-logo.png",
     },
     {
-      name: "Freelance Work",
-      description:
-        "Building high converting landing pages for small, medium businesses and startups.",
-      url: "https://drive.google.com/drive/folders/1LsZQT2QCsXQUthgStXS0nhpPVvMgkViL",
+      name: "PageScribe",
+      description: "Text to sales page in minutes.",
+      url: "https://www.linkedin.com/posts/swastikyadav_i-built-a-vibe-code-tool-that-converts-text-ugcPost-7376830601808687105-rdFw",
       isActive: true,
-      logo: "/images/freelance.png",
+      logo: "/images/pagescribe.png",
     },
     {
       name: "AltForms",
@@ -69,6 +68,22 @@ export const siteConfig = {
       url: "https://getyoufolio.vercel.app/",
       isActive: true,
       logo: "/images/folio.png",
+    },
+    {
+      name: "Freelance Work",
+      description:
+        "Building high converting landing pages for small, medium businesses and startups.",
+      url: "https://drive.google.com/drive/folders/1LsZQT2QCsXQUthgStXS0nhpPVvMgkViL",
+      isActive: true,
+      logo: "/images/freelance.png",
+    },
+    {
+      name: "Daily Manifest",
+      description:
+        "A full stack monolithic calendar app for daily journaling and habit tracking.",
+      url: "https://www.loom.com/share/58555f99930b4c7b955587e373c3ee8c",
+      isActive: false,
+      logo: "/images/dm.png",
     },
     {
       name: "8020Lessons",
