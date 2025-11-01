@@ -23,6 +23,14 @@ export const siteConfig = {
       logo: "/images/catalystui-logo.png",
     },
     {
+      name: "Freelance Work",
+      description:
+        "Building high converting landing pages for small, medium businesses and startups.",
+      url: "https://drive.google.com/drive/folders/1LsZQT2QCsXQUthgStXS0nhpPVvMgkViL",
+      isActive: true,
+      logo: "/images/freelance.png",
+    },
+    {
       name: "AltForms",
       description:
         "FormBuilder Prototype - Build and share your public form page.",
